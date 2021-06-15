@@ -1,0 +1,115 @@
+package sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity
+
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.getFormattedDate
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.imgUrl_300x450
+import sidev.app.course.dicoding.expert_moviecatalogue1.R
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.backdropImgUrl_533x300
+import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageShowDetailBinding
+import sidev.app.course.dicoding.expert_moviecatalogue1.di.DaggerLifecycleOwnerComponent
+import sidev.app.course.dicoding.expert_moviecatalogue1.di.LifecycleOwnerComponent
+import sidev.app.course.dicoding.expert_moviecatalogue1.ui.app.App
+import sidev.app.course.dicoding.expert_moviecatalogue1.util.Util.getDurationString
+import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowDetailViewModel
+import javax.inject.Inject
+
+class DetailActivity: AppCompatActivity() {
+///*
+    private lateinit var binding: PageShowDetailBinding
+    private lateinit var show: Show
+    private lateinit var showType: Const.ShowType
+    @Inject
+    private lateinit var vm: ShowDetailViewModel
+    //private lateinit var injection: LifecycleOwnerComponent
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = PageShowDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setTitle(R.string.show_detail)
+
+        intent.apply {
+            show = intent.getSerializableExtra(Const.KEY_SHOW) as Show
+            showType = intent.getSerializableExtra(Const.KEY_TYPE) as Const.ShowType
+        }
+
+        (application as App).getLifecycleOwnerComponent(this, showType).inject(this)
+
+        binding.apply {
+            tvTitle.text= show.title
+            tvRelease.text= show.getFormattedDate()
+            tvPb.text = getString(R.string.percent, show.rating)
+            pbRating.max = 100
+            pbRating.progress = show.rating.times(10).toInt()
+            btnFav.visibility = View.GONE
+            Glide.with(this@DetailActivity)
+                .load(show.imgUrl_300x450())
+                .into(ivPoster)
+        }
+
+        vm.apply {
+            onPreAsyncTask {
+                //AppConfig.incUiAsync()
+                showError(false)
+                showLoading()
+            }
+            onCallNotSuccess { process, code, e ->
+                showLoading(false)
+                showError(true, code, e)
+                //AppConfig.decUiAsync()
+            }
+            getShowDetail(show.id).observe(this@DetailActivity){
+                if(it != null){
+                    binding.apply {
+                        tvDuration.text = getDurationString(it) ?: run {
+                            tvDuration.visibility = View.GONE
+                            "null"
+                        }
+                        tvGenres.text = it.genres.joinToString()
+                        tvTagline.text = it.tagline
+                        tvOverviewContent.text = it.overview
+                        Glide.with(this@DetailActivity)
+                            .load(it.backdropImgUrl_533x300())
+                            .into(ivBg)
+                    }
+                }
+                showError(false)
+                showLoading(false)
+                //AppConfig.decUiAsync()
+            }
+        }
+    }
+
+    private fun showLoading(show: Boolean = true)= binding.apply {
+        if(show){
+            pbLoading.visibility = View.VISIBLE
+            tvOverview.visibility = View.GONE
+            tvOverviewContent.visibility = View.GONE
+        } else {
+            pbLoading.visibility = View.GONE
+            tvOverview.visibility = View.VISIBLE
+            tvOverviewContent.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showError(show: Boolean = true, code: Int = -1, e: Throwable? = null) = binding.apply {
+        if(show){
+            tvOverview.visibility= View.GONE
+            tvOverviewContent.visibility= View.GONE
+            tvError.visibility= View.VISIBLE
+            val eClass = if(e != null) e::class.java.simpleName else "null"
+            binding.tvError.text = getString(R.string.error_data, "$eClass ($code)", e?.message ?: "null")
+        } else {
+            tvOverview.visibility= View.VISIBLE
+            tvOverviewContent.visibility= View.VISIBLE
+            tvError.visibility= View.GONE
+        }
+    }
+// */
+}
