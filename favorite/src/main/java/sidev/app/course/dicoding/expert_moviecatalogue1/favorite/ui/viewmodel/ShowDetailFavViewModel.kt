@@ -20,28 +20,6 @@ class ShowDetailFavViewModel @Inject constructor(
     private var currentShowDetailId: Int? = null
     private val mIsFav: MutableLiveData<Boolean> = MutableLiveData()
 
-    init {
-        loge("ShowDetailFavViewModel type= $type")
-    }
-/*
-    private val mShowDetail: MutableLiveData<ShowDetail> = MutableLiveData()
-
-    fun getShowDetail(id: Int): LiveData<ShowDetail> {
-        if(currentShowDetailId != id || mShowDetail.value == null) {
-            doJob(Const.GET_SHOW_DETAIL) {
-                val result = when(type){
-                    Const.ShowType.MOVIE -> showRepo.getMovieDetail(id)
-                    Const.ShowType.TV -> showRepo.getTvDetail(id)
-                }
-                result.catch { doCallNotSuccess(Const.GET_SHOW_DETAIL, -1, it) }
-                    .collect { mShowDetail.postValue(it) }
-            }
-            currentShowDetailId = id
-        }
-        return mShowDetail
-    }
- */
-
     fun isFav(showId: Int): LiveData<Boolean> {
         if(currentShowDetailId != showId || mIsFav.value == null) {
             loge("isFav() id = $showId")
