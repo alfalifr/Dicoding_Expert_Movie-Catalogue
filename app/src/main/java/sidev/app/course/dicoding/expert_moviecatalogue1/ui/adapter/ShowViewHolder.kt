@@ -3,6 +3,7 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.ui.adapter
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.getFormattedDate
@@ -34,6 +35,9 @@ class ShowViewHolder(
         pb.progress = data.rating.times(10).toInt()
         Glide.with(iv)
             .load(data.imgUrl_300x450())
+            .apply(RequestOptions().apply {
+                error(R.drawable.ic_img_error)
+            })
             .into(iv)
 
         root.setOnClickListener {

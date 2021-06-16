@@ -7,6 +7,7 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
@@ -96,10 +97,11 @@ class SearchActivity: AppCompatActivity() {
                     }
                 })
                 selectTab(getTabAt(0))
+                val selectedColor = ContextCompat.getColor(this@SearchActivity, R.color.colorPrimary)
+                setSelectedTabIndicatorColor(selectedColor)
+                val normalTxtColor = ContextCompat.getColor(this@SearchActivity, R.color.colorText)
+                setTabTextColors(normalTxtColor, selectedColor)
             }
-            showLoading(false)
-            showNoData(false)
-            showRv(false)
         }
 
         vm.apply {
@@ -124,6 +126,10 @@ class SearchActivity: AppCompatActivity() {
                     showNoData(it.isEmpty())
                 }
             }
+            showLoading(false)
+            showNoData(false)
+            showRv(searchList.value?.isNotEmpty() == true)
+            loge("searchList.value?.isNotEmpty() == true = ${searchList.value?.isNotEmpty() == true}")
         }
     }
 

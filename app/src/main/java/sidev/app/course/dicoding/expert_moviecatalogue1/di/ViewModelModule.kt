@@ -10,6 +10,7 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.repo.ShowRep
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowDetailViewModel
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowListViewModel
+import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowSearchViewModel
 import sidev.lib.`val`.SuppressLiteral
 
 @Module
@@ -43,4 +44,18 @@ class ViewModelModule {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T = ShowDetailViewModel(app, showRepo, type) as T
         }
     ).get(ShowDetailViewModel::class.java)
+
+    @LifecycleOwnerScope
+    @Provides
+    fun getSearchViewModel(
+        owner: ViewModelStoreOwner,
+        app: Application,
+        showRepo: ShowRepo,
+    ): ShowSearchViewModel = ViewModelProvider(
+        owner,
+        object: ViewModelProvider.Factory {
+            @Suppress(SuppressLiteral.UNCHECKED_CAST)
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T = ShowSearchViewModel(app, showRepo) as T
+        }
+    ).get(ShowSearchViewModel::class.java)
 }
