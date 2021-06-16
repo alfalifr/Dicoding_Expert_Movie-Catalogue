@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dicoding - Expert - Movie Catalogue 1</string>
+    <string name="app_name">MovieCatalogue - Expert</string>
     <string name="title_favorite">Favorite Movies</string>
 
     <string name="no_data">No Data</string>
@@ -27,4 +27,8 @@
     <string name="powered_by">Powered by</string>
     <string name="poster">Poster</string>
     <string name="favourite">Favourite</string>
+    <string name="search">Cari</string>
+    <string name="search_show">Search Show</string>
+    <string name="error_install_favorite">Terjadi kesalahan saat install fitur favorite.\nHarap ulangi</string>
+    <string name="success_install_favorite">Menuju ke fitur favorite</string>
 </resources>

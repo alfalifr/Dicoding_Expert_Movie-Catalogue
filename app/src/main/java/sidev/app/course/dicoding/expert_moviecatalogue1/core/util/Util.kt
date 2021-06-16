@@ -1,8 +1,10 @@
 package sidev.app.course.dicoding.expert_moviecatalogue1.core.util
 
+import android.content.Context
 import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.Fail
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.ShowDetail
@@ -39,7 +41,14 @@ object Util {
         return sdf.format(cal.time)
     }
 
-    fun Show.imgUrl_300x450(): String = Const.getImgUrl_300x450(img)
-    fun Show.getFormattedDate(): String = formatDate(release)
+    fun Show.imgUrl_300x450(): String? = if(img == null) null else Const.getImgUrl_300x450(img)
+    fun Show.getFormattedDate(): String? = if(release == null) null else formatDate(release)
     fun ShowDetail.backdropImgUrl_533x300(): String = Const.getImgUrl_533x300(backdropImg)
+
+    fun Context.getDurationString(showDetail: ShowDetail): String? {
+        val dur = showDetail.duration ?: return null
+        val hour = dur / 60
+        val minute = dur % 60
+        return getString(R.string.duration, hour, minute)
+    }
 }

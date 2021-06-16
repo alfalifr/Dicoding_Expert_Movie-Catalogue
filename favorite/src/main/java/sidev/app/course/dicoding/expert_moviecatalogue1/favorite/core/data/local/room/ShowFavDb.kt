@@ -9,23 +9,4 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.data.local
 @Database(entities = [ShowEntity::class], version = 1)
 abstract class ShowFavDb: RoomDatabase() {
     abstract fun dao(): ShowFavDao
-
-    companion object {
-        private var instace: ShowFavDb?= null
-        private const val DB_NAME = "user_db"
-
-        fun getInstance(ctx: Context): ShowFavDb {
-            if(instace == null){
-                synchronized(ShowFavDb::class){
-                    instace = Room.databaseBuilder(
-                        ctx,
-                        ShowFavDb::class.java,
-                        "$DB_NAME.db"
-                    ).build()
-                }
-            }
-            return instace!!
-        }
-
-    }
 }

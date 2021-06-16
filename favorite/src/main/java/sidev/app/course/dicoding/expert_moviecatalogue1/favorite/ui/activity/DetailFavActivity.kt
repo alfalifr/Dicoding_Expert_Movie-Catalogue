@@ -2,21 +2,15 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import org.jetbrains.anko.imageResource
-import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.data.local.room.ShowFavDb
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.getFormattedDate
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.imgUrl_300x450
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
-import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageShowDetailBinding
-import sidev.app.course.dicoding.expert_moviecatalogue1.di.DaggerLifecycleOwnerComponent
-import sidev.app.course.dicoding.expert_moviecatalogue1.util.Util.getDurationString
-import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowDetailViewModel
+import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.di.DaggerFavCoreComponent
+import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.viewmodel.ShowDetailFavViewModel
+import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.DetailActivity
+import sidev.app.course.dicoding.expert_moviecatalogue1.ui.app.App
+import sidev.lib.android.std.tool.util.`fun`.loge
 import javax.inject.Inject
-
+/*
 class DetailFavActivity: AppCompatActivity() {
 ///*
     private lateinit var binding: PageShowDetailBinding
@@ -140,4 +134,52 @@ class DetailFavActivity: AppCompatActivity() {
         }
     }
 // */
+}
+
+ */
+
+class DetailFavActivity: DetailActivity() {
+
+    @Inject
+    lateinit var favVm: ShowDetailFavViewModel
+    private var isFav = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val coreComponent = (application as App).coreComponent
+        DaggerFavCoreComponent.factory().create(coreComponent)
+            .favLifecycleOwnerSubComponent()
+            .create(this, showType)
+            .inject(this)
+
+        binding.btnFav.apply {
+            visibility = View.VISIBLE
+            setOnClickListener {
+                loge("isFav btn click = $isFav")
+                if(isFav) {
+                    favVm.deleteFav(show)
+                } else {
+                    favVm.insertFav(show)
+                }
+            }
+        }
+
+        favVm.apply {
+            onCallNotSuccess { process, code, e ->
+                isError = true
+                loge("DetailFav error proccess= $process code= $code e= $e", e)
+            }
+            isFav(show.id).observe(this@DetailFavActivity) {
+                loge("DetailFav isFav observe() it= $it")
+                if(it != null){
+                    isFav = it
+                    binding.btnFav.imageResource = if(it) R.drawable.ic_heart_full else R.drawable.ic_heart
+                    showLoading(false)
+                    showError(isError)
+                    //AppConfig.decUiAsync()
+                }
+            }
+        }
+    }
 }

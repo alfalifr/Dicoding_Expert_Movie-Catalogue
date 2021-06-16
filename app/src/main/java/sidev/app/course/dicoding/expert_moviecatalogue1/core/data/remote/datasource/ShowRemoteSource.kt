@@ -6,13 +6,13 @@ import kotlinx.coroutines.flow.flow
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.data.remote.api.ShowApi
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.ShowDetail
-import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.repo.ShowRepo
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.repo.ShowRepo
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.DataMapper.toDetailModel
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.DataMapper.toModel
 import javax.inject.Inject
 
 
-class ShowRemoteSource @Inject constructor(private val api: ShowApi):
-    sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.repo.ShowRepo {
+class ShowRemoteSource @Inject constructor(private val api: ShowApi): ShowRepo {
     override fun getPopularMovieList(millisRefresh: Long?): Flow<List<Show>> = flow {
         if(millisRefresh == null) {
             val data = api.getPopularMovieList().toModel()

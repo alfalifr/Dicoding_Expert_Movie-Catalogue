@@ -1,4 +1,4 @@
-package sidev.app.course.dicoding.expert_movicatalogue1.core
+package sidev.app.course.dicoding.expert_moviecatalogue1.core
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

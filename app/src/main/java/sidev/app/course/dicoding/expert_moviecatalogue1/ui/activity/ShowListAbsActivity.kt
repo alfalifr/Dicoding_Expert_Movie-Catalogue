@@ -3,9 +3,9 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.setupWithViewPager
-import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageShowMainBinding
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.adapter.ShowViewPagerAdp
 

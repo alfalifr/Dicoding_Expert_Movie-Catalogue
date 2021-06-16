@@ -4,15 +4,19 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.repo.ShowRepo
+import sidev.app.course.dicoding.expert_moviecatalogue1.di.LifecycleOwnerComponent
+import sidev.app.course.dicoding.expert_moviecatalogue1.di.SubComponentModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [CoreModule::class, NetworkModule::class, RepoModule::class])
+@Component(modules = [CoreModule::class, RepoModule::class, SubComponentModule::class])
 interface CoreComponent {
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance app: Application): CoreComponent
     }
 
-    fun getShowRepo(): ShowRepo
+    fun lifecycleOwnerSubComponent(): LifecycleOwnerComponent.Factory
+    //fun showRepo(): ShowRepo
+    fun app(): Application
 }

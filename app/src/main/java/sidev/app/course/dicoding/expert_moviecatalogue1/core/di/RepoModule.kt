@@ -4,9 +4,10 @@ import dagger.Binds
 import dagger.Module
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.data.remote.datasource.ShowRemoteSource
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.repo.ShowRepo
+import sidev.app.course.dicoding.expert_moviecatalogue1.di.ModuleScope
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [NetworkModule::class])
 abstract class RepoModule {
     @Singleton
     @Binds

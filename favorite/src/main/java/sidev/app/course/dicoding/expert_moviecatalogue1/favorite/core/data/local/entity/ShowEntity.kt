@@ -10,8 +10,8 @@ import androidx.room.Entity
 data class ShowEntity(
     val id: Int,
     val title: String,
-    val img: String,
-    val release: String,
+    val img: String?,
+    val release: String?,
     val rating: Double,
     val type: Int, //The value is in range of Const.ShowType.ordinal.
 )

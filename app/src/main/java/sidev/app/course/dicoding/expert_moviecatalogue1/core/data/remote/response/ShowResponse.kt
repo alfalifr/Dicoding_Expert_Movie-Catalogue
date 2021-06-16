@@ -7,9 +7,9 @@ data class ShowResponse(
     @SerializedName("original_title", alternate = ["original_name"])
     val title: String,
     @SerializedName("poster_path")
-    val posterPath: String,
+    val posterPath: String?,
     @SerializedName("release_date", alternate = ["first_air_date"])
-    val releaseDate: String,
+    val releaseDate: String?,
     @SerializedName("vote_average")
     val rating: Double,
 )

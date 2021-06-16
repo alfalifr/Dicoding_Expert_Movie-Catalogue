@@ -1,17 +1,21 @@
 package sidev.app.course.dicoding.expert_moviecatalogue1.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageShowListBinding
+import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.DetailActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.adapter.ShowAdp
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.AsyncVm
 import sidev.lib.android.std.tool.util.`fun`.loge
+import sidev.lib.android.std.tool.util.`fun`.startAct
 
 abstract class ShowListAbsFragment: Fragment() {
     private lateinit var binding: PageShowListBinding
@@ -41,7 +45,25 @@ abstract class ShowListAbsFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        mAdp = ShowAdp()
+        mAdp = ShowAdp().apply {
+            setOnItemClick { pos, data ->
+                val sm = SplitInstallManagerFactory.create(requireContext())
+                loge("FavList sm.installedModules = ${sm.installedModules}")
+                if(Const.MODULE_FAV in sm.installedModules) {
+                    startActivity(
+                        Intent(requireContext(), Class.forName(Const.ACT_FAV_DETAIL)).apply {
+                            putExtra(Const.KEY_SHOW, data)
+                            putExtra(Const.KEY_TYPE, this@ShowListAbsFragment.type)
+                        }
+                    )
+                } else {
+                    startAct<DetailActivity>(
+                        Const.KEY_SHOW to data,
+                        Const.KEY_TYPE to type,
+                    )
+                }
+            }
+        }
         binding.apply {
             rv.apply {
                 adapter = mAdp

@@ -9,7 +9,7 @@ import java.io.Serializable
 data class Show(
     val id: Int,
     val title: String,
-    val img: String,
-    val release: String,
+    val img: String?,
+    val release: String?,
     val rating: Double,
 ): Serializable

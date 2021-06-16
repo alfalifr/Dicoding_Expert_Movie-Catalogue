@@ -1,6 +1,7 @@
 package sidev.app.course.dicoding.expert_moviecatalogue1.core.util
 
-import sidev.app.course.dicoding.expert_movicatalogue1.core.BuildConfig
+import sidev.app.course.dicoding.expert_moviecatalogue1.BuildConfig
+import sidev.lib.android.std.tool.util.`fun`.loge
 import java.io.Serializable
 
 
@@ -34,7 +35,7 @@ object Const {
     //2c0f358fb74aa907fcc1f8adca770ac3
     //https://api.themoviedb.org/3/tv/85271?api_key=2c0f358fb74aa907fcc1f8adca770ac3
     val API_KEY: String
-        get()= BuildConfig.API_KEY
+        get()= BuildConfig.API_KEY.also { loge("Const.API_KEY = $it") }
 
     fun getImgUrl_300x450(fileName: String): String = "$ENDPOINT_IMG_300x450/$fileName"
     fun getImgUrl_533x300(fileName: String): String = "$ENDPOINT_IMG_533x300/$fileName"
@@ -57,6 +58,13 @@ object Const {
     fun getMovieSearchUrl(keyword: String, lang: String = "en-US", page: Int = 1): String =
         "$ENDPOINT_SEARCH/movie?api_key=$API_KEY&$KEY_KEYWORD=$keyword&language=$lang&$KEY_PAGE=$page"
 
+    const val TIME_REFRESH = 1000L * 60 * 2
+
+    const val MODULE_FAV = "favorite"
+    const val PKG_FAV = "sidev.app.course.dicoding.expert_moviecatalogue1.favorite"
+    const val PKG_FAV_ACT = "$PKG_FAV.ui.activity"
+    const val ACT_FAV_DETAIL = "$PKG_FAV_ACT.DetailFavActivity"
+    const val ACT_FAV_LIST = "$PKG_FAV_ACT.ShowFavListActivity"
 
     const val KEY_KEYWORD = "query"
     const val KEY_API_KEY = "api_key"
@@ -84,4 +92,5 @@ object Const {
     const val GET_FAV_LIST = "getFavList"
     const val INSERT_FAV = "insertFav"
     const val DELETE_FAV = "deleteFav"
+    const val SEARCH_SHOW = "searchShow"
 }

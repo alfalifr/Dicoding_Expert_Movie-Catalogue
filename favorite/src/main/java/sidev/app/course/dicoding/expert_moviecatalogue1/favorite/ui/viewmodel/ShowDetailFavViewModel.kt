@@ -5,22 +5,26 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.ShowDetail
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.repo.ShowRepo
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.repo.ShowFavRepo
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.AsyncVm
+import sidev.lib.android.std.tool.util.`fun`.loge
 import javax.inject.Inject
 
 class ShowDetailFavViewModel @Inject constructor(
     c: Application?,
-    private val showRepo: ShowRepo,
     private val favRepo: ShowFavRepo,
     private val type: Const.ShowType,
 ): AsyncVm(c) {
     private var currentShowDetailId: Int? = null
-    private val mShowDetail: MutableLiveData<ShowDetail> = MutableLiveData()
     private val mIsFav: MutableLiveData<Boolean> = MutableLiveData()
+
+    init {
+        loge("ShowDetailFavViewModel type= $type")
+    }
+/*
+    private val mShowDetail: MutableLiveData<ShowDetail> = MutableLiveData()
 
     fun getShowDetail(id: Int): LiveData<ShowDetail> {
         if(currentShowDetailId != id || mShowDetail.value == null) {
@@ -36,11 +40,14 @@ class ShowDetailFavViewModel @Inject constructor(
         }
         return mShowDetail
     }
+ */
 
     fun isFav(showId: Int): LiveData<Boolean> {
         if(currentShowDetailId != showId || mIsFav.value == null) {
+            loge("isFav() id = $showId")
             doJob(Const.GET_IS_FAV) {
-                favRepo.isShowFav(type.ordinal, showId).catch { doCallNotSuccess(Const.GET_IS_FAV, -1, it) }
+                favRepo.isShowFav(type.ordinal, showId)
+                    .catch { doCallNotSuccess(Const.GET_IS_FAV, -1, it) }
                     .collect { mIsFav.postValue(it) }
             }
             currentShowDetailId = showId
@@ -52,7 +59,7 @@ class ShowDetailFavViewModel @Inject constructor(
         doJob(Const.INSERT_FAV) {
             val isFav = try {
                 favRepo.insertFav(show, type.ordinal)
-                true
+                    .also { loge("favVm insertFav() success = $it") }
             } catch (e: Throwable) { false }
             mIsFav.postValue(isFav)
         }

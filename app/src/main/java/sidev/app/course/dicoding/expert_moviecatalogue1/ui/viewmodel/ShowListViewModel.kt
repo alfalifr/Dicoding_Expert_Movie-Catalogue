@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.collect
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.repo.ShowRepo
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
+import sidev.lib.android.std.tool.util.`fun`.loge
 import javax.inject.Inject
 
 class ShowListViewModel @Inject constructor(
@@ -21,8 +22,8 @@ class ShowListViewModel @Inject constructor(
         if(mShowList.value == null) {
             doJob(Const.GET_SHOW_POPULAR_LIST) {
                 val result = when(type){
-                    Const.ShowType.MOVIE -> repo.getPopularMovieList()
-                    Const.ShowType.TV -> repo.getPopularTvList()
+                    Const.ShowType.MOVIE -> repo.getPopularMovieList(Const.TIME_REFRESH)
+                    Const.ShowType.TV -> repo.getPopularTvList(Const.TIME_REFRESH)
                 }
                 result.catch { doCallNotSuccess(Const.GET_SHOW_POPULAR_LIST, -1, it) }
                     .collect { mShowList.postValue(it) }

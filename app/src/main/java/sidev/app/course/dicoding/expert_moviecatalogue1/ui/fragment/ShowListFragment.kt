@@ -1,15 +1,24 @@
 package sidev.app.course.dicoding.expert_moviecatalogue1.ui.fragment
 
+import android.os.Bundle
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.app.App
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowListViewModel
 import javax.inject.Inject
 
 class ShowListFragment: ShowListAbsFragment() {
     @Inject
-    override lateinit var vm: ShowListViewModel
+    public override lateinit var vm: ShowListViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().application as App)
+            .coreComponent
+            .lifecycleOwnerSubComponent()
+            .create(this, type)
+            .inject(this)
+    }
 
     override fun onAfterVmConfigured() {
-        (requireActivity().application as App).getLifecycleOwnerComponent(this, type).inject(this)
         vm.apply {
             getShowPopularList().observe(this@ShowListFragment) {
                 adp.dataList = it

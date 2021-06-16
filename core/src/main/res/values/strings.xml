@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="no_data">No Data</string>
-    <string name="error_data" translatable="false">Error: %s, cause: %s</string>
-    <string name="tv_shows">TV Shows</string>
-    <string name="movies">Movies</string>
-</resources>

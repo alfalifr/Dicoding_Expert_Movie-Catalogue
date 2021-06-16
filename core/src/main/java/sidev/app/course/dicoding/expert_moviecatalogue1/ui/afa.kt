@@ -1,4 +1,4 @@
-package sidev.app.course.dicoding.expert_movicatalogue1.ui
+package sidev.app.course.dicoding.expert_moviecatalogue1.ui
 
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow

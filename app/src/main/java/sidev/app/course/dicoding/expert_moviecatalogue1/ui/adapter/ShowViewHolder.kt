@@ -1,11 +1,12 @@
 package sidev.app.course.dicoding.expert_moviecatalogue1.ui.adapter
 
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.getFormattedDate
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.imgUrl_300x450
-import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.ItemMainListBinding
 
 class ShowViewHolder(
@@ -19,7 +20,15 @@ class ShowViewHolder(
 
     fun bind(data: Show) = binding.apply {
         tvTitle.text = data.title
-        tvRelease.text = data.getFormattedDate()
+        tvRelease.apply {
+            val dateStr = data.getFormattedDate()
+            if(dateStr == null) {
+                visibility = View.GONE
+            } else {
+                visibility = View.VISIBLE
+                text = dateStr
+            }
+        }
         tvPb.text = root.context.getString(R.string.percent, data.rating)
         pb.max = 100
         pb.progress = data.rating.times(10).toInt()

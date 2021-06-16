@@ -10,4 +10,5 @@
     <color name="blue_dark">#032541</color>
     <color name="blue_light">#01b4e4</color>
     <color name="green_lime">#90cea1</color>
+    <color name="no_color">#00000000</color>
 </resources>

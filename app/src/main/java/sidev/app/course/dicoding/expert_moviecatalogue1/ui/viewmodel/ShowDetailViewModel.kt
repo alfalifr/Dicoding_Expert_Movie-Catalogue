@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.ShowDetail
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.repo.ShowRepo
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const

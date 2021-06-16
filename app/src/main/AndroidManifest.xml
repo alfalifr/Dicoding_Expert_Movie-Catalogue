@@ -2,12 +2,33 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sidev.app.course.dicoding.expert_moviecatalogue1">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/logo_tmdb"
+        android:roundIcon="@drawable/logo_tmdb"
+        android:name=".ui.app.App"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DicodingExpertMovieCatalogue1" />
+        android:theme="@style/Theme.DicodingExpertMovieCatalogue1" >
+
+        <activity android:name=".ui.activity.SplashActivity"
+            android:theme="@style/NoActionBar"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.activity.ShowListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.DetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.SearchActivity"
+            android:screenOrientation="portrait"/>
+
+    </application>
 
 </manifest>
