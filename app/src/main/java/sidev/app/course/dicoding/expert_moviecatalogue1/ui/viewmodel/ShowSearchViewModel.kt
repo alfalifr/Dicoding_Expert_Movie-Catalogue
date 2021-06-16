@@ -28,7 +28,4 @@ class ShowSearchViewModel @Inject constructor(
         }
     }
 
-    fun resetSearch() {
-        mSearchList.postValue(emptyList())
-    }
 }

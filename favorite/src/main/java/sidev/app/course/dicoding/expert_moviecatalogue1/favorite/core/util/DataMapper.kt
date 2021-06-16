@@ -11,6 +11,4 @@ object DataMapper {
         id, title, img, release, rating, showType,
     )
 
-    fun List<ShowEntity>.entitiesToShowModelList(): List<Show> = map { it.toModel() }
-    fun List<Show>.toShowEntityList(showType: Int): List<ShowEntity> = map { it.toShowEntity(showType) }
 }

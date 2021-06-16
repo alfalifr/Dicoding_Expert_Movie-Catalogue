@@ -5,7 +5,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.core.data.remote.respons
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.data.remote.response.ShowResponse
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.ShowDetail
-import sidev.lib.android.std.tool.util.`fun`.loge
 
 object DataMapper {
     fun ShowResponse.toModel(): Show {

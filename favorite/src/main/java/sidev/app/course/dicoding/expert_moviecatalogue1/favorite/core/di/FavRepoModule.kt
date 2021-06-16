@@ -5,7 +5,6 @@ import dagger.Module
 import sidev.app.course.dicoding.expert_moviecatalogue1.di.ModuleScope
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.data.local.datasource.ShowFavRepoImpl
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.repo.ShowFavRepo
-import javax.inject.Singleton
 
 @Module
 abstract class FavRepoModule {

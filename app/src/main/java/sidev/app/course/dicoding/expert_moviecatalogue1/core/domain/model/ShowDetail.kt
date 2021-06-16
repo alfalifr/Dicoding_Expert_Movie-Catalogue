@@ -1,6 +1,5 @@
 package sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model
 
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import java.io.Serializable
 
 /**

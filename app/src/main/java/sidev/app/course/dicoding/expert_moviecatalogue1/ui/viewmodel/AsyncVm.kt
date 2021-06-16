@@ -17,11 +17,10 @@ import kotlin.coroutines.CoroutineContext
  */
 @SuppressLint("StaticFieldLeak")
 open class AsyncVm(app: Application?): ViewModel() {
-    protected var ctx: Context? = app
+    private var ctx: Context? = app
         private set
 
     private var mJobMap: MutableMap<String, Job>?= null
-    protected val jobMap: Map<String, Job>? get()= mJobMap
 
     /**
      * Executed before any async task in `this` runs.
@@ -43,7 +42,7 @@ open class AsyncVm(app: Application?): ViewModel() {
     }
 
     protected fun cancelJob(process: String){
-        jobMap?.get(process)?.cancel()
+        mJobMap?.get(process)?.cancel()
     }
     fun onPreAsyncTask(f: ((process: String) -> Unit)?){
         onPreAsyncTask= f

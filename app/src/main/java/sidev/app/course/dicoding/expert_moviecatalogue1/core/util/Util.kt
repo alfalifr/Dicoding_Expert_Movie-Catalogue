@@ -5,15 +5,12 @@ import androidx.core.view.get
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.Fail
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.ShowDetail
 import java.text.SimpleDateFormat
 import java.util.*
 
 object Util {
-    fun fail(msg: String = "Fail", code: Int = -1, e: Throwable? = null): Fail = Fail(msg, code, e)
-    fun canGetFail(msg: String = "Can't get value", code: Int = -1, e: Throwable? = null): Fail = fail(msg, code, e)
 
     fun BottomNavigationView.setupWithViewPager(vp: ViewPager2, idMapper: (id: Int) -> Int){
         var isInternallyChanged = true

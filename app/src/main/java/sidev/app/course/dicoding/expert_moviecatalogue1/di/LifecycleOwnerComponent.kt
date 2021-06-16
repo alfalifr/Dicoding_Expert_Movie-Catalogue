@@ -2,9 +2,7 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.di
 
 import androidx.lifecycle.ViewModelStoreOwner
 import dagger.BindsInstance
-import dagger.Component
 import dagger.Subcomponent
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.CoreComponent
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.DetailActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.SearchActivity

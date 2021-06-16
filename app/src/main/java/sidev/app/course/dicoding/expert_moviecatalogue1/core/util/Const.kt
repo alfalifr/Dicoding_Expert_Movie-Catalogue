@@ -24,7 +24,6 @@ object Const {
     const val ENDPOINT_ROOT = "https://api.themoviedb.org/3"
     private const val ENDPOINT_MOVIE = "$ENDPOINT_ROOT/movie"
     private const val ENDPOINT_TV = "$ENDPOINT_ROOT/tv"
-    private const val ENDPOINT_SEARCH = "$ENDPOINT_ROOT/search"
     const val PATH_TV_POPULAR = "tv/popular"
     const val PATH_MOVIE_POPULAR = "movie/popular"
     private const val ENDPOINT_PUBLIC = "https://themoviedb.org"
@@ -32,8 +31,7 @@ object Const {
     private const val ENDPOINT_IMG = "$ENDPOINT_PUBLIC/t/p"
     private const val ENDPOINT_IMG_300x450 = "$ENDPOINT_IMG/w300_and_h450_bestv2"
     private const val ENDPOINT_IMG_533x300 = "$ENDPOINT_IMG/w533_and_h300_bestv2"
-    //2c0f358fb74aa907fcc1f8adca770ac3
-    //https://api.themoviedb.org/3/tv/85271?api_key=2c0f358fb74aa907fcc1f8adca770ac3
+
     val API_KEY: String
         get()= BuildConfig.API_KEY.also { loge("Const.API_KEY = $it") }
 
@@ -52,12 +50,6 @@ object Const {
     fun getTvPopularUrl(lang: String = "en-US", page: Int = 1): String =
         "$ENDPOINT_TV/popular?api_key=$API_KEY&language=$lang&$KEY_PAGE=$page"
 
-    fun getTvSearchUrl(keyword: String, lang: String = "en-US", page: Int = 1): String =
-        "$ENDPOINT_SEARCH/tv?api_key=$API_KEY&$KEY_KEYWORD=$keyword&language=$lang&$KEY_PAGE=$page"
-
-    fun getMovieSearchUrl(keyword: String, lang: String = "en-US", page: Int = 1): String =
-        "$ENDPOINT_SEARCH/movie?api_key=$API_KEY&$KEY_KEYWORD=$keyword&language=$lang&$KEY_PAGE=$page"
-
     const val TIME_REFRESH = 1000L * 60 * 2
 
     const val MODULE_FAV = "favorite"
@@ -72,17 +64,14 @@ object Const {
 
     const val KEY_TYPE = "type"
     const val KEY_SHOW = "show"
-    const val KEY_RESULTS = "results"
-    const val KEY_ID = "id"
-    const val KEY_TITLE = "title"
+    const val KEY_ORIGINAL_TITLE = "original_title"
+    const val KEY_ORIGINAL_NAME = "original_name"
+    const val KEY_TOTAL_RESULTS = "total_results"
+    const val KEY_TOTAL_PAGES = "total_pages"
     const val KEY_RELEASE = "release_date"
     const val KEY_FIRST_AIR_DATE = "first_air_date"
     const val KEY_IMG = "poster_path"
     const val KEY_RATING = "vote_average"
-    const val KEY_GENRES = "genres"
-    const val KEY_NAME = "name"
-    const val KEY_TAGLINE = "tagline"
-    const val KEY_OVERVIEW = "overview"
     const val KEY_BACKDROP = "backdrop_path"
     const val KEY_MOVIE_DURATION = "runtime"
 

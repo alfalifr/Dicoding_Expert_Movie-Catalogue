@@ -17,10 +17,8 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageSearchBi
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.adapter.ShowAdp
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.app.App
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowSearchViewModel
-import sidev.lib.android.std.tool.util.`fun`.asResNameOrNullBy
 import sidev.lib.android.std.tool.util.`fun`.loge
 import sidev.lib.android.std.tool.util.`fun`.startAct
-import java.lang.IllegalStateException
 import javax.inject.Inject
 
 class SearchActivity: AppCompatActivity() {
