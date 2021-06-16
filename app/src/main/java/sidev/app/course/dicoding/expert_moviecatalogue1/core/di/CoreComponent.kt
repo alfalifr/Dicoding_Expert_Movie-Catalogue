@@ -16,6 +16,5 @@ interface CoreComponent {
     }
 
     fun lifecycleOwnerSubComponent(): LifecycleOwnerComponent.Factory
-    //fun showRepo(): ShowRepo
     fun app(): Application
 }

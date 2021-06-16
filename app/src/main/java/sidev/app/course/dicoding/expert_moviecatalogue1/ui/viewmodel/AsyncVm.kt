@@ -18,7 +18,6 @@ import kotlin.coroutines.CoroutineContext
 @SuppressLint("StaticFieldLeak")
 open class AsyncVm(app: Application?): ViewModel() {
     private var ctx: Context? = app
-        private set
 
     private var mJobMap: MutableMap<String, Job>?= null
 

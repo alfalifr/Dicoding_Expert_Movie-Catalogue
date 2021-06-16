@@ -16,7 +16,6 @@ class ShowDetailViewModel @Inject constructor(
 ): AsyncVm(c) {
     private var currentShowDetailId: Int? = null
     private val mShowDetail: MutableLiveData<ShowDetail> = MutableLiveData()
-    //private val mIsFav: MutableLiveData<Boolean> = MutableLiveData()
 
     fun getShowDetail(id: Int): LiveData<ShowDetail> {
         if(currentShowDetailId != id || mShowDetail.value == null) {
@@ -32,33 +31,4 @@ class ShowDetailViewModel @Inject constructor(
         }
         return mShowDetail
     }
-/*
-    fun isFav(showId: Int): LiveData<Boolean> {
-        if(currentShowDetailId != showId || mIsFav.value == null) {
-            doJob(Const.GET_IS_FAV) {
-                favRepo.isShowFav(type.ordinal, showId).catch { doCallNotSuccess(Const.GET_IS_FAV, -1, it) }
-                    .collect { mIsFav.postValue(it) }
-            }
-            currentShowDetailId = showId
-        }
-        return mIsFav
-    }
-
-    fun insertFav(show: Show){
-        doJob(Const.INSERT_FAV) {
-            val isFav = try {
-                favRepo.insertFav(show, type.ordinal)
-                true
-            } catch (e: Throwable) { false }
-            mIsFav.postValue(isFav)
-        }
-    }
-
-    fun deleteFav(show: Show) {
-        doJob(Const.DELETE_FAV) {
-            val isNotFav = favRepo.deleteFav(show, type.ordinal) == 1
-            mIsFav.postValue(!isNotFav)
-        }
-    }
- */
 }

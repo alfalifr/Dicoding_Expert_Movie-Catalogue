@@ -24,7 +24,6 @@ class ShowListFragment: ShowListAbsFragment() {
                 adp.dataList = it
                 showLoading(false)
                 showNoData(it == null || it.isEmpty())
-                //AppConfig.decUiAsync()
             }
         }
     }

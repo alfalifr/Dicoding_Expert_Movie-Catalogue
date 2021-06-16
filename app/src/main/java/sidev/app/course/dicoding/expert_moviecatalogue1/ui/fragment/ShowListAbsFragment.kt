@@ -74,14 +74,12 @@ abstract class ShowListAbsFragment: Fragment() {
         vm.apply {
             onPreAsyncTask {
                 loge("onPreAsyncTask() AppConfig.incUiAsync()")
-                //AppConfig.incUiAsync()
                 showNoData(false)
                 showLoading()
             }
             onCallNotSuccess { process, code, e ->
                 showLoading(false)
                 showDataError(true, code, e)
-                //AppConfig.decUiAsync()
             }
             onAfterVmConfigured()
         }

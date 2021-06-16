@@ -10,7 +10,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.ItemMainList
 
 
 class ShowAdp: RecyclerView.Adapter<ShowViewHolder>(), ShowViewHolder.OnItemClick {
-    //RecyclerView.Adapter<ShowAdp.ViewHolder>() {
 
     var dataList: List<Show>?= null
         set(v) {
@@ -19,7 +18,7 @@ class ShowAdp: RecyclerView.Adapter<ShowViewHolder>(), ShowViewHolder.OnItemClic
             field = v
         }
 
-    private var onItemClick: ShowViewHolder.OnItemClick?= null //((pos: Int, data: Show) -> Unit)? = null
+    private var onItemClick: ShowViewHolder.OnItemClick?= null
     fun setOnItemClick(l: ShowViewHolder.OnItemClick?) {
         onItemClick = l
     }

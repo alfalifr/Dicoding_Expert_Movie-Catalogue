@@ -17,7 +17,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowDetailV
 import javax.inject.Inject
 
 open class DetailActivity: AppCompatActivity() {
-///*
     protected lateinit var binding: PageShowDetailBinding
         private set
     protected lateinit var show: Show
@@ -28,7 +27,6 @@ open class DetailActivity: AppCompatActivity() {
     lateinit var vm: ShowDetailViewModel
 
     protected var isError = false
-    //private lateinit var injection: LifecycleOwnerComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +67,6 @@ open class DetailActivity: AppCompatActivity() {
 
         vm.apply {
             onPreAsyncTask {
-                //AppConfig.incUiAsync()
                 showError(false)
                 showLoading()
             }
@@ -77,7 +74,6 @@ open class DetailActivity: AppCompatActivity() {
                 showLoading(false)
                 showError(true, code, e)
                 isError = true
-                //AppConfig.decUiAsync()
             }
             getShowDetail(show.id).observe(this@DetailActivity){
                 if(it != null){
@@ -97,7 +93,6 @@ open class DetailActivity: AppCompatActivity() {
                 showError(false)
                 showLoading(false)
                 isError = false
-                //AppConfig.decUiAsync()
             }
         }
     }
@@ -127,5 +122,4 @@ open class DetailActivity: AppCompatActivity() {
             tvError.visibility= View.GONE
         }
     }
-// */
 }
