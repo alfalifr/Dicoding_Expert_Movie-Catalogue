@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
@@ -62,6 +63,9 @@ open class DetailActivity: AppCompatActivity() {
             btnFav.visibility = View.GONE
             Glide.with(this@DetailActivity)
                 .load(show.imgUrl_300x450())
+                .apply(RequestOptions().apply {
+                    error(R.drawable.ic_img_error)
+                })
                 .into(ivPoster)
         }
 
@@ -84,7 +88,10 @@ open class DetailActivity: AppCompatActivity() {
                         }
                         tvGenres.text = it.genres.joinToString()
                         tvTagline.text = it.tagline
-                        tvOverviewContent.text = it.overview
+                        tvOverviewContent.text =
+                            if(it.overview.isNotBlank()) it.overview
+                            else getString(R.string.no_data)
+
                         Glide.with(this@DetailActivity)
                             .load(it.backdropImgUrl_533x300())
                             .into(ivBg)

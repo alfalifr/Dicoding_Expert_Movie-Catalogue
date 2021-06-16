@@ -10,7 +10,7 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.di.FavSubCompon
 @ModuleScope
 @Component(
     dependencies = [CoreComponent::class],
-    modules = [DbModule::class, RepoModule::class, FavRepoModule::class, FavSubComponentModule::class],
+    modules = [DbModule::class, FavRepoModule::class, FavSubComponentModule::class],
 )
 interface FavCoreComponent {
     @Component.Factory

@@ -40,7 +40,7 @@ object Util {
 
     fun Show.imgUrl_300x450(): String? = if(img == null) null else Const.getImgUrl_300x450(img)
     fun Show.getFormattedDate(): String? = if(release == null) null else formatDate(release)
-    fun ShowDetail.backdropImgUrl_533x300(): String = Const.getImgUrl_533x300(backdropImg)
+    fun ShowDetail.backdropImgUrl_533x300(): String? = if(backdropImg == null) null else Const.getImgUrl_533x300(backdropImg)
 
     fun Context.getDurationString(showDetail: ShowDetail): String? {
         val dur = showDetail.duration ?: return null

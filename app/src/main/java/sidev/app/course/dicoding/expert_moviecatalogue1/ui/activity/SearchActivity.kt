@@ -41,7 +41,7 @@ class SearchActivity: AppCompatActivity() {
         (application as App)
             .coreComponent
             .lifecycleOwnerSubComponent()
-            .create(this, Const.ShowType.TV) // It doesn't matter right now
+            .create(this, Const.ShowType.values().first())
             .inject(this)
 
         adp = ShowAdp().apply {

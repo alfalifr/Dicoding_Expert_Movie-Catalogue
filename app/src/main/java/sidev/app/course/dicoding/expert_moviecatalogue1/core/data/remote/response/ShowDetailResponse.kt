@@ -17,7 +17,7 @@ data class ShowDetailResponse(
     @SerializedName(Const.KEY_MOVIE_DURATION)
     val duration: Int?,
     @SerializedName(Const.KEY_BACKDROP)
-    val backdropPath: String,
+    val backdropPath: String?,
     val overview: String,
     val tagline: String,
     val genres: List<GenreResponse>,

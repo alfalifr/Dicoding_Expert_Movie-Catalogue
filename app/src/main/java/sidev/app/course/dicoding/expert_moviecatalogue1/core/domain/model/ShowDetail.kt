@@ -11,5 +11,5 @@ data class ShowDetail(
     val duration: Int?, //in minutes, null if the show type is tv show
     val tagline: String,
     val overview: String,
-    val backdropImg: String,
+    val backdropImg: String?,
 ): Serializable
