@@ -1,4 +1,4 @@
-package sidev.app.course.dicoding.expert_moviecatalogue1.core.data.remote.datasource
+package sidev.app.course.dicoding.expert_moviecatalogue1.core.data.repo
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -11,8 +11,7 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.DataMapper.toD
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.DataMapper.toModel
 import javax.inject.Inject
 
-
-class ShowRemoteSource @Inject constructor(private val api: ShowApi): ShowRepo {
+class ShowRepoImpl @Inject constructor(private val api: ShowApi): ShowRepo {
     override fun getPopularMovieList(millisRefresh: Long?): Flow<List<Show>> = flow {
         if(millisRefresh == null) {
             val data = api.getPopularMovieList().toModel()

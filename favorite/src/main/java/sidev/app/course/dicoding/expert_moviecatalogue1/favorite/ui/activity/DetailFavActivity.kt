@@ -43,7 +43,7 @@ class DetailFavActivity: DetailActivity() {
                 isError = true
                 loge("DetailFav error proccess= $process code= $code e= $e", e)
             }
-            isFav(show.id).observe(this@DetailFavActivity) {
+            isFav(show).observe(this@DetailFavActivity) {
                 loge("DetailFav isFav observe() it= $it")
                 if(it != null){
                     isFav = it

@@ -6,13 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.repo.ShowRepo
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.GetPopularShowListUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import javax.inject.Inject
 
 class ShowListViewModel @Inject constructor(
     c: Application?,
-    private val repo: ShowRepo,
+    private val useCase: GetPopularShowListUseCase,
     private val type: Const.ShowType,
 ): AsyncVm(c) {
 
@@ -21,10 +21,7 @@ class ShowListViewModel @Inject constructor(
     fun getShowPopularList(): LiveData<List<Show>> {
         if(mShowList.value == null) {
             doJob(Const.GET_SHOW_POPULAR_LIST) {
-                val result = when(type){
-                    Const.ShowType.MOVIE -> repo.getPopularMovieList(Const.TIME_REFRESH)
-                    Const.ShowType.TV -> repo.getPopularTvList(Const.TIME_REFRESH)
-                }
+                val result = useCase(type, Const.TIME_REFRESH)
                 result.catch { doCallNotSuccess(Const.GET_SHOW_POPULAR_LIST, -1, it) }
                     .collect { mShowList.postValue(it) }
             }

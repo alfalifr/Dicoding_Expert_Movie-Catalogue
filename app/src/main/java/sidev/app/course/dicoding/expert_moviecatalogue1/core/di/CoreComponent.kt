@@ -8,7 +8,7 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.di.SubComponentModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [CoreModule::class, RepoModule::class, SubComponentModule::class])
+@Component(modules = [CoreModule::class, UseCaseModule::class, SubComponentModule::class])
 interface CoreComponent {
     @Component.Factory
     interface Factory {

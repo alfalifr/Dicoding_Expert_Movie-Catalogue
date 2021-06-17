@@ -2,7 +2,7 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.core.di
 
 import dagger.Binds
 import dagger.Module
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.data.remote.datasource.ShowRemoteSource
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.data.repo.ShowRepoImpl
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.repo.ShowRepo
 import javax.inject.Singleton
 
@@ -10,5 +10,5 @@ import javax.inject.Singleton
 abstract class RepoModule {
     @Singleton
     @Binds
-    abstract fun getShowRepo(impl: ShowRemoteSource): ShowRepo
+    abstract fun getShowRepo(impl: ShowRepoImpl): ShowRepo
 }

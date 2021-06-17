@@ -17,3 +17,5 @@ class SplashActivity: AppCompatActivity() {
         }
     }
 }
+
+//TODO buat implementasi RX di UI (EditText di halaman search)

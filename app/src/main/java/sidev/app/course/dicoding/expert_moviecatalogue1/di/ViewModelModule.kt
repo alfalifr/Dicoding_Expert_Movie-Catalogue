@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import dagger.Module
 import dagger.Provides
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.repo.ShowRepo
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.GetPopularShowListUseCase
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.GetShowDetailUseCase
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.SearchShowUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowDetailViewModel
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowListViewModel
@@ -20,13 +22,13 @@ class ViewModelModule {
     fun getShowListViewModel(
         owner: ViewModelStoreOwner,
         app: Application,
-        repo: ShowRepo,
+        useCase: GetPopularShowListUseCase,
         type: Const.ShowType,
     ): ShowListViewModel = ViewModelProvider(
         owner,
         object: ViewModelProvider.Factory {
             @Suppress(SuppressLiteral.UNCHECKED_CAST)
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T = ShowListViewModel(app, repo, type) as T
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T = ShowListViewModel(app, useCase, type) as T
         }
     ).get(ShowListViewModel::class.java)
 
@@ -35,13 +37,13 @@ class ViewModelModule {
     fun getShowDetailViewModel(
         owner: ViewModelStoreOwner,
         app: Application,
-        showRepo: ShowRepo,
+        useCase: GetShowDetailUseCase,
         type: Const.ShowType,
     ): ShowDetailViewModel = ViewModelProvider(
         owner,
         object: ViewModelProvider.Factory {
             @Suppress(SuppressLiteral.UNCHECKED_CAST)
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T = ShowDetailViewModel(app, showRepo, type) as T
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T = ShowDetailViewModel(app, type, useCase) as T
         }
     ).get(ShowDetailViewModel::class.java)
 
@@ -50,12 +52,12 @@ class ViewModelModule {
     fun getSearchViewModel(
         owner: ViewModelStoreOwner,
         app: Application,
-        showRepo: ShowRepo,
+        useCase: SearchShowUseCase,
     ): ShowSearchViewModel = ViewModelProvider(
         owner,
         object: ViewModelProvider.Factory {
             @Suppress(SuppressLiteral.UNCHECKED_CAST)
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T = ShowSearchViewModel(app, showRepo) as T
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T = ShowSearchViewModel(app, useCase) as T
         }
     ).get(ShowSearchViewModel::class.java)
 }
