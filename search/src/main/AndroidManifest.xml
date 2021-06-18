@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="sidev.app.course.dicoding.search">
+    package="sidev.app.course.dicoding.expert_moviecatalogue1.search">
 
     <dist:module
         dist:instant="false"
@@ -12,7 +12,7 @@
         <dist:fusing dist:include="true" />
     </dist:module>
     <application>
-        <activity android:name="sidev.app.course.dicoding.expert_moviecatalogue1.search.ui.activity.SearchActivity"
+        <activity android:name=".ui.activity.SearchActivity"
             android:screenOrientation="portrait"/>
     </application>
 </manifest>
