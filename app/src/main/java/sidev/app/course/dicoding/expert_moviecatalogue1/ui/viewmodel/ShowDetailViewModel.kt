@@ -8,17 +8,15 @@ import kotlinx.coroutines.flow.collect
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.ShowDetail
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.GetShowDetailUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
-import javax.inject.Inject
 
-class ShowDetailViewModel @Inject constructor(
+class ShowDetailViewModel(
     c: Application?,
-    private val type: Const.ShowType,
     private val useCase: GetShowDetailUseCase,
 ): AsyncVm(c) {
     private var currentShowDetailId: Int? = null
     private val mShowDetail: MutableLiveData<ShowDetail> = MutableLiveData()
 
-    fun getShowDetail(id: Int): LiveData<ShowDetail> {
+    fun getShowDetail(type: Const.ShowType, id: Int): LiveData<ShowDetail> {
         if(currentShowDetailId != id || mShowDetail.value == null) {
             doJob(Const.GET_SHOW_DETAIL) {
                 val result = useCase(type, id)

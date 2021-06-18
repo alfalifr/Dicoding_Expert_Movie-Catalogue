@@ -20,8 +20,8 @@ import sidev.lib.android.std.tool.util.`fun`.startAct
 abstract class ShowListAbsFragment: Fragment() {
     private lateinit var binding: PageShowListBinding
 
-    private lateinit var mAdp: ShowAdp
-    protected val adp: ShowAdp get()= mAdp
+    protected lateinit var adp: ShowAdp
+        private set
     protected abstract val vm: AsyncVm
     protected var type: Const.ShowType = Const.ShowType.TV
         private set
@@ -45,10 +45,13 @@ abstract class ShowListAbsFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        mAdp = ShowAdp().apply {
+        adp = ShowAdp().apply {
             setOnItemClick { pos, data ->
                 val sm = SplitInstallManagerFactory.create(requireContext())
+
                 loge("FavList sm.installedModules = ${sm.installedModules}")
+
+                //Check whether favorite module is installed
                 if(Const.MODULE_FAV in sm.installedModules) {
                     startActivity(
                         Intent(requireContext(), Class.forName(Const.ACT_FAV_DETAIL)).apply {
@@ -66,7 +69,7 @@ abstract class ShowListAbsFragment: Fragment() {
         }
         binding.apply {
             rv.apply {
-                adapter = mAdp
+                adapter = adp
                 layoutManager = GridLayoutManager(requireContext(), 2)
             }
         }

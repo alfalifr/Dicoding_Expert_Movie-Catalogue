@@ -3,7 +3,6 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.di
 import androidx.lifecycle.ViewModelStoreOwner
 import dagger.BindsInstance
 import dagger.Subcomponent
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.DetailActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.SearchActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.fragment.ShowListFragment
@@ -15,7 +14,6 @@ interface LifecycleOwnerComponent {
     interface Factory {
         fun create(
             @BindsInstance owner: ViewModelStoreOwner,
-            @BindsInstance type: Const.ShowType,
         ): LifecycleOwnerComponent
     }
 

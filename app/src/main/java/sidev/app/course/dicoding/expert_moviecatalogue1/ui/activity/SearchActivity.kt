@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageSearchBinding
@@ -27,22 +30,18 @@ class SearchActivity: AppCompatActivity() {
     @Inject
     lateinit var vm: ShowSearchViewModel
     private lateinit var showType: Const.ShowType
-    private var keyword: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        loge("SearchAct.onCreate() AWAL")
+        (application as App)
+            .coreComponent
+            .lifecycleOwnerSubComponent()
+            .create(this)
+            .inject(this)
+
         super.onCreate(savedInstanceState)
         binding = PageSearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle(R.string.search_show)
-
-        loge("SearchAct.onCreate() TENGAH")
-
-        (application as App)
-            .coreComponent
-            .lifecycleOwnerSubComponent()
-            .create(this, Const.ShowType.values().first())
-            .inject(this)
 
         adp = ShowAdp().apply {
             setOnItemClick { pos, data ->
@@ -68,33 +67,23 @@ class SearchActivity: AppCompatActivity() {
                 adapter = adp
                 layoutManager = GridLayoutManager(this@SearchActivity, 2)
             }
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    if(query?.isNotBlank() == true) {
-                        vm.searchShow(query, showType)
-                    } else {
-                        showRv(false)
-                    }
-                    keyword = query
-                    return true
+            etSearch.addTextChangedListener {
+                if(it != null) {
+                    vm.searchShow(showType, it.toString())
                 }
-                override fun onQueryTextChange(newText: String?): Boolean = false
-            })
+            }
             tabs.apply {
                 this.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
                     override fun onTabSelected(tab: TabLayout.Tab?) {
                         mapTabPositionToShowType(tab)
-                        if(keyword?.isNotBlank() == true) {
-                            //keyword is impossibly null cuz it has been checked.
-                            vm.searchShow(keyword!!, showType)
-                        }
+                        vm.searchShow(showType, delay = 1)
                     }
                     override fun onTabUnselected(tab: TabLayout.Tab?) {}
                     override fun onTabReselected(tab: TabLayout.Tab?) {
                         mapTabPositionToShowType(tab)
                     }
                 })
-                selectTab(getTabAt(0))
+                selectTab(getTabAt(vm.selectedTabPosition))
                 val selectedColor = ContextCompat.getColor(this@SearchActivity, R.color.colorPrimary)
                 setSelectedTabIndicatorColor(selectedColor)
                 val normalTxtColor = ContextCompat.getColor(this@SearchActivity, R.color.colorText)
@@ -124,10 +113,14 @@ class SearchActivity: AppCompatActivity() {
                     showNoData(it.isEmpty())
                 }
             }
+            lifecycleScope.launch {
+                searchValidState.collect {
+                    binding.etSearch.error = if(it) null else getString(R.string.keyword_is_not_valid)
+                }
+            }
             showLoading(false)
             showNoData(false)
             showRv(searchList.value?.isNotEmpty() == true)
-            loge("searchList.value?.isNotEmpty() == true = ${searchList.value?.isNotEmpty() == true}")
         }
     }
 
@@ -161,5 +154,6 @@ class SearchActivity: AppCompatActivity() {
             1 -> Const.ShowType.MOVIE
             else -> throw IllegalStateException("No such tab position ($pos)")
         }
+        vm.selectedTabPosition = tab.position
     }
 }

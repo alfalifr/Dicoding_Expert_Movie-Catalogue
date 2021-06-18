@@ -8,17 +8,15 @@ import kotlinx.coroutines.flow.collect
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.GetPopularShowListUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
-import javax.inject.Inject
 
-class ShowListViewModel @Inject constructor(
+class ShowListViewModel(
     c: Application?,
     private val useCase: GetPopularShowListUseCase,
-    private val type: Const.ShowType,
 ): AsyncVm(c) {
 
     private val mShowList: MutableLiveData<List<Show>> = MutableLiveData()
 
-    fun getShowPopularList(): LiveData<List<Show>> {
+    fun getShowPopularList(type: Const.ShowType): LiveData<List<Show>> {
         if(mShowList.value == null) {
             doJob(Const.GET_SHOW_POPULAR_LIST) {
                 val result = useCase(type, Const.TIME_REFRESH)

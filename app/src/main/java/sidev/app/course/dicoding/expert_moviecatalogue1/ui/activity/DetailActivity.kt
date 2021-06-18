@@ -30,6 +30,11 @@ open class DetailActivity: AppCompatActivity() {
     protected var isError = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as App).coreComponent
+            .lifecycleOwnerSubComponent()
+            .create(this)
+            .inject(this)
+
         super.onCreate(savedInstanceState)
         binding = PageShowDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -40,11 +45,6 @@ open class DetailActivity: AppCompatActivity() {
             show = intent.getSerializableExtra(Const.KEY_SHOW) as Show
             showType = intent.getSerializableExtra(Const.KEY_TYPE) as Const.ShowType
         }
-
-        (application as App).coreComponent
-            .lifecycleOwnerSubComponent()
-            .create(this, showType)
-            .inject(this)
 
         binding.apply {
             tvTitle.text= show.title
@@ -79,7 +79,7 @@ open class DetailActivity: AppCompatActivity() {
                 showError(true, code, e)
                 isError = true
             }
-            getShowDetail(show.id).observe(this@DetailActivity){
+            getShowDetail(showType, show.id).observe(this@DetailActivity){
                 if(it != null){
                     binding.apply {
                         tvDuration.text = getDurationString(it) ?: run {

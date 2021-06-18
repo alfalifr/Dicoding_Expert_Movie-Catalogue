@@ -16,13 +16,13 @@ class ShowFavListFragment: ShowListAbsFragment() {
     public override lateinit var vm: ShowFavListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         val coreComponent = (requireActivity().application as App).coreComponent
         DaggerFavCoreComponent.factory().create(coreComponent)
             .favLifecycleOwnerSubComponent()
-            .create(this, type)
+            .create(this)
             .inject(this)
+
+        super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class ShowFavListFragment: ShowListAbsFragment() {
 
     override fun onAfterVmConfigured() {
         vm.apply {
-            getFavList().observe(this@ShowFavListFragment) {
+            getFavList(type).observe(this@ShowFavListFragment) {
                 adp.dataList = it
                 showLoading(false)
                 showNoData(it == null || it.isEmpty())

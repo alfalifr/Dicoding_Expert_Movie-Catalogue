@@ -2,6 +2,7 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.data.repo
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.data.local.room.ShowFavDao
@@ -17,6 +18,7 @@ class ShowFavRepoImpl @Inject constructor(private val dao: ShowFavDao): ShowFavR
         .flowOn(Dispatchers.IO)
 
     override fun getFavShowById(type: Int, id: Int): Flow<Show?> = dao.getShowById(type, id)
+        .distinctUntilChanged()
         .map { it?.toModel() }
         .flowOn(Dispatchers.IO)
 

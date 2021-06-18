@@ -10,17 +10,17 @@ class ShowListFragment: ShowListAbsFragment() {
     public override lateinit var vm: ShowListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         (requireActivity().application as App)
             .coreComponent
             .lifecycleOwnerSubComponent()
-            .create(this, type)
+            .create(this)
             .inject(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onAfterVmConfigured() {
         vm.apply {
-            getShowPopularList().observe(this@ShowListFragment) {
+            getShowPopularList(type).observe(this@ShowListFragment) {
                 adp.dataList = it
                 showLoading(false)
                 showNoData(it == null || it.isEmpty())

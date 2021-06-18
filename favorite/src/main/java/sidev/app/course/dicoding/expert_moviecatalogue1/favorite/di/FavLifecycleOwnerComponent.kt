@@ -3,7 +3,6 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.favorite.di
 import androidx.lifecycle.ViewModelStoreOwner
 import dagger.BindsInstance
 import dagger.Subcomponent
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.di.LifecycleOwnerScope
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.activity.DetailFavActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.fragment.ShowFavListFragment
@@ -15,7 +14,6 @@ interface FavLifecycleOwnerComponent {
     interface Factory {
         fun create(
             @BindsInstance owner: ViewModelStoreOwner,
-            @BindsInstance type: Const.ShowType,
         ): FavLifecycleOwnerComponent
     }
 

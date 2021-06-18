@@ -18,22 +18,22 @@ class DetailFavActivity: DetailActivity() {
     private var isFav = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         val coreComponent = (application as App).coreComponent
         DaggerFavCoreComponent.factory().create(coreComponent)
             .favLifecycleOwnerSubComponent()
-            .create(this, showType)
+            .create(this)
             .inject(this)
+
+        super.onCreate(savedInstanceState)
 
         binding.btnFav.apply {
             visibility = View.VISIBLE
             setOnClickListener {
                 loge("isFav btn click = $isFav")
                 if(isFav) {
-                    favVm.deleteFav(show)
+                    favVm.deleteFav(showType, show)
                 } else {
-                    favVm.insertFav(show)
+                    favVm.insertFav(showType, show)
                 }
             }
         }
@@ -43,7 +43,7 @@ class DetailFavActivity: DetailActivity() {
                 isError = true
                 loge("DetailFav error proccess= $process code= $code e= $e", e)
             }
-            isFav(show).observe(this@DetailFavActivity) {
+            isFav(showType, show).observe(this@DetailFavActivity) {
                 loge("DetailFav isFav observe() it= $it")
                 if(it != null){
                     isFav = it

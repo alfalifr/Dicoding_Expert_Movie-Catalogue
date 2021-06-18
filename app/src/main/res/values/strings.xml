@@ -2,6 +2,7 @@
     <string name="app_name">MovieCatalogue - Expert</string>
     <string name="title_favorite">Favorite Movies</string>
 
+    <string name="keyword_is_not_valid">Keyword is not valid</string>
     <string name="no_data">No Data</string>
     <string name="error_data" translatable="false">Error: %s, cause: %s</string>
     <string name="tv_shows">TV Shows</string>
@@ -29,6 +30,6 @@
     <string name="favourite">Favourite</string>
     <string name="search">Cari</string>
     <string name="search_show">Search Show</string>
-    <string name="error_install_favorite">Terjadi kesalahan saat install fitur favorite.\nHarap ulangi</string>
-    <string name="success_install_favorite">Menuju ke fitur favorite</string>
+    <string name="error_install_favorite">Error happened when installing favorite module.\nPlease retry</string>
+    <string name="success_install_favorite">To favorite module</string>
 </resources>

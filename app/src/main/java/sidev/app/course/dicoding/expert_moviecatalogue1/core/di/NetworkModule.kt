@@ -11,7 +11,7 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import javax.inject.Singleton
 
 @Module
-class NetworkModule {
+object NetworkModule {
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())

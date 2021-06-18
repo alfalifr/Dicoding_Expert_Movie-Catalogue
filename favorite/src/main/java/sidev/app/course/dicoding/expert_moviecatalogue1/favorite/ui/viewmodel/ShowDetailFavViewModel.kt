@@ -11,12 +11,9 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.use
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.usecase.InsertFavShowUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.usecase.IsShowFavUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.AsyncVm
-import sidev.lib.android.std.tool.util.`fun`.loge
-import javax.inject.Inject
 
-class ShowDetailFavViewModel @Inject constructor(
+class ShowDetailFavViewModel(
     c: Application?,
-    private val type: Const.ShowType,
     private val isShowFavUseCase: IsShowFavUseCase,
     private val insertFavShowUseCase: InsertFavShowUseCase,
     private val deleteFavShowUseCase: DeleteFavShowUseCase,
@@ -24,9 +21,8 @@ class ShowDetailFavViewModel @Inject constructor(
     private var currentShowDetailId: Int? = null
     private val mIsFav: MutableLiveData<Boolean> = MutableLiveData()
 
-    fun isFav(show: Show): LiveData<Boolean> {
+    fun isFav(type: Const.ShowType, show: Show): LiveData<Boolean> {
         if(currentShowDetailId != show.id || mIsFav.value == null) {
-            loge("isFav() id = $show")
             doJob(Const.GET_IS_FAV) {
                 isShowFavUseCase(type, show)
                     .catch { doCallNotSuccess(Const.GET_IS_FAV, -1, it) }
@@ -37,7 +33,7 @@ class ShowDetailFavViewModel @Inject constructor(
         return mIsFav
     }
 
-    fun insertFav(show: Show){
+    fun insertFav(type: Const.ShowType, show: Show){
         doJob(Const.INSERT_FAV) {
             insertFavShowUseCase(type, show)
                 .catch { doCallNotSuccess(Const.INSERT_FAV, -1, it) }
@@ -45,7 +41,7 @@ class ShowDetailFavViewModel @Inject constructor(
         }
     }
 
-    fun deleteFav(show: Show) {
+    fun deleteFav(type: Const.ShowType, show: Show) {
         doJob(Const.DELETE_FAV) {
             deleteFavShowUseCase(type, show)
                 .catch { doCallNotSuccess(Const.DELETE_FAV, -1, it) }

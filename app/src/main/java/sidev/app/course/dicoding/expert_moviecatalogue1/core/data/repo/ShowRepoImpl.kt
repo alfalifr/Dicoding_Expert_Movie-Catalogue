@@ -1,8 +1,10 @@
 package sidev.app.course.dicoding.expert_moviecatalogue1.core.data.repo
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.data.remote.api.ShowApi
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.ShowDetail
@@ -23,7 +25,7 @@ class ShowRepoImpl @Inject constructor(private val api: ShowApi): ShowRepo {
                 delay(millisRefresh)
             }
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     override fun getPopularTvList(millisRefresh: Long?): Flow<List<Show>> = flow {
         if(millisRefresh == null) {
@@ -36,25 +38,25 @@ class ShowRepoImpl @Inject constructor(private val api: ShowApi): ShowRepo {
                 delay(millisRefresh)
             }
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     override fun getMovieDetail(id: Int): Flow<ShowDetail> = flow {
         val data = api.getMovieDetail(id).toDetailModel()
         emit(data)
-    }
+    }.flowOn(Dispatchers.IO)
 
     override fun getTvDetail(id: Int): Flow<ShowDetail> = flow {
         val data = api.getTvDetail(id).toDetailModel()
         emit(data)
-    }
+    }.flowOn(Dispatchers.IO)
 
     override fun searchTv(keyword: String): Flow<List<Show>> = flow {
         val data = api.searchTv(keyword).toModel()
         emit(data)
-    }
+    }.flowOn(Dispatchers.IO)
 
     override fun searchMovie(keyword: String): Flow<List<Show>> = flow {
         val data = api.searchMovie(keyword).toModel()
         emit(data)
-    }
+    }.flowOn(Dispatchers.IO)
 }
