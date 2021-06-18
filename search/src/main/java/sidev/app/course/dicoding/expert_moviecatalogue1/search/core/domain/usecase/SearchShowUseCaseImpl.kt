@@ -4,7 +4,6 @@ import kotlinx.coroutines.flow.Flow
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.repo.ShowRepo
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
-import sidev.app.course.dicoding.expert_moviecatalogue1.search.core.domain.usecase.SearchShowUseCase
 import javax.inject.Inject
 
 class SearchShowUseCaseImpl @Inject constructor(private val repo: ShowRepo): SearchShowUseCase {
