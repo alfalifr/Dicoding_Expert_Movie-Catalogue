@@ -53,10 +53,16 @@ object Const {
     const val TIME_REFRESH = 1000L * 60 * 2
 
     const val MODULE_FAV = "favorite"
+    const val MODULE_SEARCH = "search"
+
     const val PKG_FAV = "sidev.app.course.dicoding.expert_moviecatalogue1.favorite"
     const val PKG_FAV_ACT = "$PKG_FAV.ui.activity"
     const val ACT_FAV_DETAIL = "$PKG_FAV_ACT.DetailFavActivity"
     const val ACT_FAV_LIST = "$PKG_FAV_ACT.ShowFavListActivity"
+
+    const val PKG_SEARCH = "sidev.app.course.dicoding.expert_moviecatalogue1.search"
+    const val PKG_SEARCH_ACT = "$PKG_SEARCH.ui.activity"
+    const val ACT_SEARCH = "$PKG_SEARCH_ACT.SearchActivity"
 
     const val KEY_KEYWORD = "query"
     const val KEY_API_KEY = "api_key"

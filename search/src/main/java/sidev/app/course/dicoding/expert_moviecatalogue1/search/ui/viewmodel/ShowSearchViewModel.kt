@@ -1,4 +1,4 @@
-package sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel
+package sidev.app.course.dicoding.expert_moviecatalogue1.search.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.LiveData
@@ -7,8 +7,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.SearchShowUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
+import sidev.app.course.dicoding.expert_moviecatalogue1.search.core.domain.usecase.SearchShowUseCase
+import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.AsyncVm
 
 class ShowSearchViewModel(
     app: Application?,

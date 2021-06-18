@@ -26,8 +26,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.activity.DetailActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.SearchActivity"
-            android:screenOrientation="portrait"/>
 
     </application>
 

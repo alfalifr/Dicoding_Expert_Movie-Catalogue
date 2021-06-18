@@ -1,4 +1,4 @@
-package sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity
+package sidev.app.course.dicoding.expert_moviecatalogue1.search.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -17,9 +17,11 @@ import kotlinx.coroutines.launch
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageSearchBinding
+import sidev.app.course.dicoding.expert_moviecatalogue1.search.core.di.DaggerSearchCoreComponent
+import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.DetailActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.adapter.ShowAdp
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.app.App
-import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowSearchViewModel
+import sidev.app.course.dicoding.expert_moviecatalogue1.search.ui.viewmodel.ShowSearchViewModel
 import sidev.lib.android.std.tool.util.`fun`.loge
 import sidev.lib.android.std.tool.util.`fun`.startAct
 import javax.inject.Inject
@@ -32,9 +34,9 @@ class SearchActivity: AppCompatActivity() {
     private lateinit var showType: Const.ShowType
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as App)
-            .coreComponent
-            .lifecycleOwnerSubComponent()
+        val coreComponent = (application as App).coreComponent
+        DaggerSearchCoreComponent.factory().create(coreComponent)
+            .searchLifecycleOwnerComponent()
             .create(this)
             .inject(this)
 
@@ -46,7 +48,9 @@ class SearchActivity: AppCompatActivity() {
         adp = ShowAdp().apply {
             setOnItemClick { pos, data ->
                 val sm = SplitInstallManagerFactory.create(this@SearchActivity)
-                loge("FavList sm.installedModules = ${sm.installedModules}")
+
+                loge("SearchActivity sm.installedModules = ${sm.installedModules}")
+
                 if(Const.MODULE_FAV in sm.installedModules) {
                     startActivity(
                         Intent(this@SearchActivity, Class.forName(Const.ACT_FAV_DETAIL)).apply {

@@ -1,3 +1,4 @@
+include ':search'
 include ':favorite'
 include ':app'
 rootProject.name = "Dicoding - Expert - Movie Catalogue 1"

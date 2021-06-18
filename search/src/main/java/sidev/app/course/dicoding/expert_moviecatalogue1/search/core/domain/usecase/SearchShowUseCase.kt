@@ -1,4 +1,4 @@
-package sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase
+package sidev.app.course.dicoding.expert_moviecatalogue1.search.core.domain.usecase
 
 import kotlinx.coroutines.flow.Flow
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show

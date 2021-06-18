@@ -32,4 +32,9 @@
     <string name="search_show">Search Show</string>
     <string name="error_install_favorite">Error happened when installing favorite module.\nPlease retry</string>
     <string name="success_install_favorite">To favorite module</string>
+    <string name="error_install_search">Error happened when installing search module.\nPlease retry</string>
+    <string name="success_install_search">To search module</string>
+    <string name="error_install_module">Error happened when installing dynamic feature module.\nPlease retry</string>
+    <string name="success_install_module">To dynamic feature module</string>
+    <string name="title_search">Search Show</string>
 </resources>

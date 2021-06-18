@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModelStoreOwner
 import dagger.BindsInstance
 import dagger.Subcomponent
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.DetailActivity
-import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.SearchActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.fragment.ShowListFragment
 
 @LifecycleOwnerScope
@@ -19,5 +18,4 @@ interface LifecycleOwnerComponent {
 
     fun inject(act: DetailActivity)
     fun inject(frag: ShowListFragment)
-    fun inject(act: SearchActivity)
 }

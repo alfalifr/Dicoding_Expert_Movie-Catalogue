@@ -13,7 +13,4 @@ abstract class UseCaseModule {
     @Singleton
     @Binds
     abstract fun getShowDetailUseCase(useCase: GetShowDetailUseCaseImpl): GetShowDetailUseCase
-    @Singleton
-    @Binds
-    abstract fun searcShowUseCase(useCase: SearchShowUseCaseImpl): SearchShowUseCase
 }
