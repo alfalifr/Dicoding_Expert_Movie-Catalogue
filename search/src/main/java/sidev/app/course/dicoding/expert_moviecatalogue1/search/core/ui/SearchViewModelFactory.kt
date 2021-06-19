@@ -3,7 +3,7 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.search.core.ui
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import sidev.app.course.dicoding.expert_moviecatalogue1.di.ModuleScope
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.ModuleScope
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.core.domain.usecase.SearchShowUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.ui.viewmodel.ShowSearchViewModel
 import sidev.lib.`val`.SuppressLiteral

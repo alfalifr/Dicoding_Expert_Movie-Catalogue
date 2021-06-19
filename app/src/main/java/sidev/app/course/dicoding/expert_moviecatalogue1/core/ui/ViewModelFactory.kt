@@ -5,14 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.GetPopularShowListUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.GetShowDetailUseCase
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.LifecycleOwnerScope
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowDetailViewModel
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowListViewModel
 import sidev.lib.`val`.SuppressLiteral
 import java.lang.IllegalStateException
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@LifecycleOwnerScope
 class ViewModelFactory @Inject constructor(
     private val app: Application?,
     private val getPopularShowListUseCase: GetPopularShowListUseCase,

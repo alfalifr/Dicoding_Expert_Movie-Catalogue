@@ -5,7 +5,7 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.CoreModule
-import sidev.app.course.dicoding.expert_moviecatalogue1.di.ModuleScope
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.ModuleScope
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.data.local.room.ShowFavDao
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.data.local.room.ShowFavDb
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.util.FavConst

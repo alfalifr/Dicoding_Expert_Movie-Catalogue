@@ -16,8 +16,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
-import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageSearchBinding
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.core.di.DaggerSearchCoreComponent
+import sidev.app.course.dicoding.expert_moviecatalogue1.search.databinding.PageSearchBinding
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.DetailActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.adapter.ShowAdp
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.app.App

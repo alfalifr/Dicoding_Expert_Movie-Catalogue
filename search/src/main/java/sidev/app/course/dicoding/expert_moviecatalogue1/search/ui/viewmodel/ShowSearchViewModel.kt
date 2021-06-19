@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.*
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.core.domain.usecase.SearchShowUseCase
-import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.AsyncVm
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.ui.AsyncVm
 
 class ShowSearchViewModel(
     app: Application?,

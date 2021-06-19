@@ -1,6 +1,7 @@
 package sidev.app.course.dicoding.expert_moviecatalogue1.ui.fragment
 
 import android.os.Bundle
+import sidev.app.course.dicoding.expert_moviecatalogue1.di.DaggerLifecycleOwnerComponent
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.app.App
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowListViewModel
 import javax.inject.Inject
@@ -10,10 +11,9 @@ class ShowListFragment: ShowListAbsFragment() {
     public override lateinit var vm: ShowListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (requireActivity().application as App)
-            .coreComponent
-            .lifecycleOwnerSubComponent()
-            .create(this)
+        val coreComponent = (requireActivity().application as App).coreComponent
+        DaggerLifecycleOwnerComponent.factory()
+            .create(coreComponent, this)
             .inject(this)
         super.onCreate(savedInstanceState)
     }

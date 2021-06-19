@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import dagger.Module
 import dagger.Provides
-import sidev.app.course.dicoding.expert_moviecatalogue1.di.LifecycleOwnerScope
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.LifecycleOwnerScope
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.core.ui.SearchViewModelFactory
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.ui.viewmodel.ShowSearchViewModel
 

@@ -2,7 +2,7 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.search.core.di
 
 import dagger.Component
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.CoreComponent
-import sidev.app.course.dicoding.expert_moviecatalogue1.di.ModuleScope
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.ModuleScope
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.di.SearchLifecycleOwnerComponent
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.di.SearchSubComponentModule
 

@@ -10,7 +10,7 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.usecase.DeleteFavShowUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.usecase.InsertFavShowUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.usecase.IsShowFavUseCase
-import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.AsyncVm
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.ui.AsyncVm
 
 class ShowDetailFavViewModel(
     c: Application?,

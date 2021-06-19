@@ -2,7 +2,7 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.di
 
 import dagger.Component
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.CoreComponent
-import sidev.app.course.dicoding.expert_moviecatalogue1.di.ModuleScope
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.ModuleScope
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.di.FavLifecycleOwnerComponent
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.di.FavSubComponentModule
 

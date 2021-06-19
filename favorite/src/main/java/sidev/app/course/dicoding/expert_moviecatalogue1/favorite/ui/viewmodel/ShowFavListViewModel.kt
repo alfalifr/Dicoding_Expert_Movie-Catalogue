@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.collect
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.usecase.GetFavShowListUseCase
-import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.AsyncVm
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.ui.AsyncVm
 
 class ShowFavListViewModel(
     app: Application?,

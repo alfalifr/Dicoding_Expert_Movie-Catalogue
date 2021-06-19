@@ -3,6 +3,9 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
+
+apply from: "../common_dependencies.gradle"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -37,6 +40,8 @@ android {
 
 dependencies {
     implementation project(":app")
+    implementation project(":core")
+/*
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'
     testImplementation 'junit:junit:4.+'
@@ -72,4 +77,5 @@ dependencies {
     //Dagger for Android
     implementation 'com.google.dagger:dagger-android:2.35.1'
     kapt 'com.google.dagger:dagger-android-processor:2.35.1'
+ */
 }

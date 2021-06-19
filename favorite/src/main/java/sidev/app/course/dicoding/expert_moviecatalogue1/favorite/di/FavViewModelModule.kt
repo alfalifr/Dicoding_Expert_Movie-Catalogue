@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import dagger.Module
 import dagger.Provides
-import sidev.app.course.dicoding.expert_moviecatalogue1.di.LifecycleOwnerScope
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.LifecycleOwnerScope
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.ui.FavViewModelFactory
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.viewmodel.ShowDetailFavViewModel
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.viewmodel.ShowFavListViewModel

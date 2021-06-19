@@ -11,8 +11,9 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.backdropImgUrl_533x300
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.getFormattedDate
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.imgUrl_300x450
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.getDurationString
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.AppUtil.getDurationString
 import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageShowDetailBinding
+import sidev.app.course.dicoding.expert_moviecatalogue1.di.DaggerLifecycleOwnerComponent
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.app.App
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowDetailViewModel
 import javax.inject.Inject
@@ -30,9 +31,9 @@ open class DetailActivity: AppCompatActivity() {
     protected var isError = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as App).coreComponent
-            .lifecycleOwnerSubComponent()
-            .create(this)
+        val coreComponent = (application as App).coreComponent
+        DaggerLifecycleOwnerComponent.factory()
+            .create(coreComponent, this)
             .inject(this)
 
         super.onCreate(savedInstanceState)

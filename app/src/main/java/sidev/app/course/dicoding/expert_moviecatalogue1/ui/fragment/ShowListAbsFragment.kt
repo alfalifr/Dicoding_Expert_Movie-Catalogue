@@ -13,7 +13,7 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageShowListBinding
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.DetailActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.adapter.ShowAdp
-import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.AsyncVm
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.ui.AsyncVm
 import sidev.lib.android.std.tool.util.`fun`.loge
 import sidev.lib.android.std.tool.util.`fun`.startAct
 

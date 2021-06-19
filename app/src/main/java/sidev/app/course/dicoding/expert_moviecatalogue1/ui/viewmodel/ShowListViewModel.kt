@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.GetPopularShowListUseCase
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.ui.AsyncVm
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 
 class ShowListViewModel(
