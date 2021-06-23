@@ -8,9 +8,9 @@ data class ShowDetailResponse(
     @SerializedName(Const.KEY_ORIGINAL_TITLE, alternate = [Const.KEY_ORIGINAL_NAME])
     val title: String,
     @SerializedName(Const.KEY_IMG)
-    val posterPath: String,
+    val posterPath: String?,
     @SerializedName(Const.KEY_RELEASE, alternate = [Const.KEY_FIRST_AIR_DATE])
-    val releaseDate: String,
+    val releaseDate: String?,
     @SerializedName(Const.KEY_RATING)
     val rating: Double,
 

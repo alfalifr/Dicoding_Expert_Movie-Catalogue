@@ -41,4 +41,9 @@ android {
 
 dependencies {
     implementation project(":core")
+    testImplementation project(":core")
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+
+    testImplementation 'androidx.test.espresso:espresso-contrib:3.3.0' // For RecyclerView item
 }

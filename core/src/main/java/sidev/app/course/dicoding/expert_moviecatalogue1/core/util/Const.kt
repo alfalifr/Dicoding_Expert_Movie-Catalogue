@@ -33,7 +33,7 @@ object Const {
     private const val ENDPOINT_IMG_533x300 = "$ENDPOINT_IMG/w533_and_h300_bestv2"
 
     val API_KEY: String
-        get()= BuildConfig.API_KEY.also { loge("Const.API_KEY = $it") }
+        get()= BuildConfig.API_KEY
 
     fun getImgUrl_300x450(fileName: String): String = "$ENDPOINT_IMG_300x450/$fileName"
     fun getImgUrl_533x300(fileName: String): String = "$ENDPOINT_IMG_533x300/$fileName"
