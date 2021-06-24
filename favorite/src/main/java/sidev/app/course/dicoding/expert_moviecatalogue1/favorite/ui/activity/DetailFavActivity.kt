@@ -46,7 +46,7 @@ class DetailFavActivity: DetailActivity() {
             isFav(showType, show).observe(this@DetailFavActivity) {
                 loge("DetailFav isFav observe() it= $it")
                 if(it != null){
-                    isFav = it
+                    this@DetailFavActivity.isFav = it
                     binding.btnFav.imageResource = if(it) R.drawable.ic_heart_full else R.drawable.ic_heart
                     showLoading(false)
                     showError(isError)

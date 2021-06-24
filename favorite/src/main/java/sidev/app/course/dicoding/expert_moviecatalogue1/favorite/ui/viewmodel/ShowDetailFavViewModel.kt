@@ -20,6 +20,7 @@ class ShowDetailFavViewModel(
 ): AsyncVm(c) {
     private var currentShowDetailId: Int? = null
     private val mIsFav: MutableLiveData<Boolean> = MutableLiveData()
+    val isFav: LiveData<Boolean> get() = mIsFav
 
     fun isFav(type: Const.ShowType, show: Show): LiveData<Boolean> {
         if(currentShowDetailId != show.id || mIsFav.value == null) {

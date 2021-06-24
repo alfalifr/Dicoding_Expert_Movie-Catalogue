@@ -7,12 +7,8 @@ import androidx.lifecycle.Observer
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
+import org.junit.*
 import org.junit.Assert.assertEquals
-import org.junit.BeforeClass
-import org.junit.FixMethodOrder
-import org.junit.Rule
-import org.junit.Test
-import org.junit.runners.MethodSorters
 import org.mockito.Mockito.*
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
@@ -23,18 +19,14 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.search.core.domain.useca
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.ui.viewmodel.ShowSearchViewModel
 import sidev.lib.`val`.SuppressLiteral
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class ShowSearchViewModelTest {
     companion object {
         private val useCase: SearchShowUseCase by lazy { mock(SearchShowUseCase::class.java) }
-        private val vm: ShowSearchViewModel by lazy { ShowSearchViewModel(null, useCase) }
+
 
         private val randomShowList = DummyData.showDomains.randomSubList()
         private val randomShowType = Const.ShowType.values().random()
         private const val randomKeyword = "ay"
-
-        @Suppress(SuppressLiteral.UNCHECKED_CAST)
-        private val mockObserver: Observer<List<Show>> = mock(Observer::class.java) as Observer<List<Show>>
 
         @JvmStatic
         @BeforeClass
@@ -48,11 +40,19 @@ class ShowSearchViewModelTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
+    private lateinit var mockObserver: Observer<List<Show>>
+    private lateinit var vm: ShowSearchViewModel
+
+    @Before
+    fun beforeEach() {
+        vm = ShowSearchViewModel(null, useCase)
+        @Suppress(SuppressLiteral.UNCHECKED_CAST)
+        mockObserver = mock(Observer::class.java) as Observer<List<Show>>
+        vm.searchList.observeForever(mockObserver)
+    }
 
     @Test
-    fun _1_invalidKeyword(): Unit = runBlocking {
-        vm.searchList.observeForever(mockObserver)
-
+    fun invalidKeyword(): Unit = runBlocking {
         val keyword = "*._"
         vm.searchShow(randomShowType, keyword)
         val data = vm.searchValidState.first()
@@ -62,7 +62,7 @@ class ShowSearchViewModelTest {
     }
 
     @Test
-    fun _2_validKeyword(): Unit = runBlocking {
+    fun validKeyword(): Unit = runBlocking {
         vm.searchShow(randomShowType, randomKeyword, 0)
         val isValid = vm.searchValidState.first() //So the validator flow can run
         assertEquals(true, isValid)
