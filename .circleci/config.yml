@@ -31,13 +31,13 @@ jobs:
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
       - store_test_results:
-          paths: app/build/test-results
+          path: app/build/test-results
       - store_test_results:
-          paths: core/build/test-results
+          path: core/build/test-results
       - store_test_results:
-          paths: favorite/build/test-results
+          path: favorite/build/test-results
       - store_test_results:
-          paths: search/build/test-results
+          path: search/build/test-results
 
       # Build
       - run:
