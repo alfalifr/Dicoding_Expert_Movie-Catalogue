@@ -21,7 +21,8 @@ object Const {
         abstract fun getPopularUrl(lang: String = "en-US", page: Int = 1): String
     }
 
-    const val ENDPOINT_ROOT = "https://api.themoviedb.org/3"
+    const val ENDPOINT_HOST = "api.themoviedb.org"
+    const val ENDPOINT_ROOT = "https://$ENDPOINT_HOST/3"
     private const val ENDPOINT_MOVIE = "$ENDPOINT_ROOT/movie"
     private const val ENDPOINT_TV = "$ENDPOINT_ROOT/tv"
     const val PATH_TV_POPULAR = "tv/popular"
@@ -63,6 +64,10 @@ object Const {
     const val PKG_SEARCH = "sidev.app.course.dicoding.expert_moviecatalogue1.search"
     const val PKG_SEARCH_ACT = "$PKG_SEARCH.ui.activity"
     const val ACT_SEARCH = "$PKG_SEARCH_ACT.SearchActivity"
+
+    const val PREF_FILE_NAME = "shared_pref"
+
+    const val KEY_PASS_PHRASE = "pass_phrase"
 
     const val KEY_KEYWORD = "query"
     const val KEY_API_KEY = "api_key"

@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 
 data class ShowResponse(
+    @SerializedName("id")
     val id: Int,
     @SerializedName(Const.KEY_ORIGINAL_TITLE, alternate = [Const.KEY_ORIGINAL_NAME])
     val title: String,

@@ -24,14 +24,14 @@ class ShowRepoTest {
         @JvmStatic
         @BeforeClass
         fun init(): Unit = runBlocking {
-            `when`(showApi.getPopularMovieList(anyInt(), anyString())).thenReturn(DummyData.movieListResponse)
-            `when`(showApi.getPopularTvList(anyInt(), anyString())).thenReturn(DummyData.tvListResponse)
+            `when`(showApi.getPopularMovieList(anyInt())).thenReturn(DummyData.movieListResponse)
+            `when`(showApi.getPopularTvList(anyInt())).thenReturn(DummyData.tvListResponse)
 
-            `when`(showApi.getMovieDetail(anyInt(), anyString())).thenReturn(randomMovieResponseDetail)
-            `when`(showApi.getTvDetail(anyInt(), anyString())).thenReturn(randomTvResponseDetail)
+            `when`(showApi.getMovieDetail(anyInt())).thenReturn(randomMovieResponseDetail)
+            `when`(showApi.getTvDetail(anyInt())).thenReturn(randomTvResponseDetail)
 
-            `when`(showApi.searchMovie(anyString(), anyInt(), anyString())).thenReturn(DummyData.movieSearchListResponse)
-            `when`(showApi.searchTv(anyString(), anyInt(), anyString())).thenReturn(DummyData.tvSearchListResponse)
+            `when`(showApi.searchMovie(anyString(), anyInt())).thenReturn(DummyData.movieSearchListResponse)
+            `when`(showApi.searchTv(anyString(), anyInt())).thenReturn(DummyData.tvSearchListResponse)
         }
     }
 

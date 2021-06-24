@@ -26,11 +26,13 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField('String', 'API_KEY', "\"$apiKey\"")
         }
         debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField('String', 'API_KEY', "\"$apiKey\"")
         }
     }
@@ -46,4 +48,6 @@ android {
     }
 }
 
-//dependencies {}
+dependencies {
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+}
