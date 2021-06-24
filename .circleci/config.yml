@@ -7,7 +7,7 @@ orbs:
   android: circleci/android@1.0.3
 
 jobs:
-  test-build:
+  test-and-build:
     executor:
       name: android/android-machine
     steps:
@@ -44,3 +44,7 @@ jobs:
           path: app/build/reports
           destination: reports
 
+workflows:
+  default:
+    jobs:
+      - test-and-build
