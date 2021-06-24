@@ -54,9 +54,6 @@ jobs:
             - ~/.android/build-cache
             - ~/.android/cache
       - run:
-          name: Run Tests
-          command: ./gradlew lint test
-      - run:
           name: Run Build
           command: ./gradlew build
       - store_artifacts:
