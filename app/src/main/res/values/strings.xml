@@ -1,16 +1,16 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MovieCatalogue - Expert</string>
-    <string name="title_favorite">Favorite Movies</string>
+    <string name="title_favorite" tools:ignore="UnusedResources">Favorite Movies</string>
     <string name="title_search">Search Show</string>
 
-    <string name="keyword_is_not_valid">Keyword is not valid</string>
+    <string name="keyword_is_not_valid" tools:ignore="UnusedResources">Keyword is not valid</string>
     <string name="no_data">No Data</string>
     <string name="error_data" translatable="false">Error: %s, cause: %s</string>
     <string name="tv_shows">TV Shows</string>
     <string name="movies">Movies</string>
 
     <string name="show_list">Show List</string>
-    <string name="show_fav_list">Favourite Show List</string>
+    <string name="show_fav_list" tools:ignore="UnusedResources">Favourite Show List</string>
     <string name="show_detail">Show Detail</string>
     <string name="title">Title</string>
     <string name="release_date">Release Date</string>
@@ -29,7 +29,7 @@
     <string name="poster">Poster</string>
     <string name="favourite">Favourite</string>
     <string name="search">Cari</string>
-    <string name="search_show">Search Show</string>
+    <string name="search_show" tools:ignore="UnusedResources">Search Show</string>
     <string name="error_install_favorite">Error happened when installing favorite module.\nPlease retry</string>
     <string name="success_install_favorite">To favorite module</string>
     <string name="error_install_search">Error happened when installing search module.\nPlease retry</string>
