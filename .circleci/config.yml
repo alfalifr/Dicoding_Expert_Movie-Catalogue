@@ -27,7 +27,7 @@ jobs:
             - ~/.android/build-cache
             - ~/.android/cache
 
-      # Unit test
+      # Unit test and also make code coverage analysis
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
       - store_test_results:

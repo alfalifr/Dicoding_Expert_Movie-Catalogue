@@ -1,12 +1,15 @@
 CI:
-  Link CI:
+  Link CI: https://circleci.com/gh/alfalifr/Dicoding_Expert_Movie-Catalogue
 
 Security:
   Obfuscation:
+    - core/consumer-rules.pro
+    - app/proguard-rules.pro
   Encryption:
-    DB:
-    SharedPreferences:
+    - DB: sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.di.DbModule (:favorite)
+    - SharedPreferences: sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util (:core)
   Certificate Pinning:
+    - sidev.app.course.dicoding.expert_moviecatalogue1.core.di.NetworkModule (:core)
 
 Catatan Lain:
   - Terdapat unit testing untuk masing-masing modul (:app, :core, :favorite, :search)
