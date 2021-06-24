@@ -1,6 +1,9 @@
 CI:
   Link CI: https://circleci.com/gh/alfalifr/Dicoding_Expert_Movie-Catalogue
 
+Performance:
+  LeakCanary: app/build.gradle (:app)
+
 Security:
   Obfuscation:
     - core/consumer-rules.pro
@@ -14,12 +17,16 @@ Security:
 Catatan Lain:
   - Terdapat unit testing untuk masing-masing modul (:app, :core, :favorite, :search)
     yang mengetest repo, use case, dan view model.
+
   - Project ini menggunakan library JaCoCo untuk mengecek test code coverage
     pada modul :core, :favorite, dan :search
-  - Beberapa resource mungkin muncul sebagai "unused" pada Inspect Code.
-    Namun resource tersebut digunakan pada modul lain. Seperti misalnya R.drawable.ic_heart
-    digunakan pada modul :favorite. Cara mudah tuk mengetahui digunakan di modul lain atau tidak
-    yaitu dengan cara Search Everywhere (Ctrl + Shift + F di Windows, Cmd + Shift + F di Mac)
-    dengan scope project, lalu ketik nama resource nya (misal pada contoh ic_heart).
-  - Pada Inspect Code mungkin juga muncul kategori "Properties files" dengan peringatan unused.
+
+  - Pada Inspect Code mungkin muncul kategori "Properties files" dengan peringatan unused.
     Namun, nilai di dalamnya digunakan pada build.gradle project dan modul :core.
+
+  - Beberapa resource mungkin muncul sebagai "unused" pada Inspect Code.
+    Namun resource tersebut digunakan pada modul lain. Seperti misalnya R.string.title_favorite
+    digunakan pada Manifest.xml modul :favorite. Cara mudah tuk mengetahui digunakan di modul
+    lain atau tidak yaitu dengan cara Search Everywhere (Ctrl + Shift + F di Windows,
+    Cmd + Shift + F di Mac) dengan scope project, lalu ketik nama resource nya
+    (misal pada contoh title_favorite).
