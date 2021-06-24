@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    //id 'jacoco'
 }
 
 apply from: "../common_dependencies.gradle"
@@ -51,3 +52,12 @@ android {
 dependencies {
     implementation 'com.github.javafaker:javafaker:1.0.2'
 }
+
+/*
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+ */
