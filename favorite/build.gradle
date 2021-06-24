@@ -23,7 +23,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false //Can't have proguard-rule in dynamic feature module
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {

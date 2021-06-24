@@ -31,7 +31,7 @@ jobs:
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
       - store_test_results:
-          path:
+          paths:
             - app/build/test-results
             - core/build/test-results
             - favorite/build/test-results
@@ -46,7 +46,7 @@ jobs:
 
       #Store reports
       - store_artifacts:
-          path:
+          paths:
             - app/build/reports
             - core/build/reports
             - favorite/build/reports
