@@ -2,7 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    //id 'jacoco'
+    id 'jacoco'
 }
 
 apply from: "../common_dependencies.gradle"
@@ -35,6 +35,7 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField('String', 'API_KEY', "\"$apiKey\"")
+            //testCoverageEnabled true
         }
     }
     compileOptions {
@@ -53,11 +54,39 @@ dependencies {
     implementation 'com.github.javafaker:javafaker:1.0.2'
 }
 
-/*
-test {
-    finalizedBy jacocoTestReport // report is always generated after tests run
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+    def fileFilter = [
+        '**/R.class',
+        '**/R.styleable',
+        '**/R$*.class',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        '**/*Test*.*',
+        'android/**/*.*',
+        '**/data/models/*',
+        '**/di/*',
+        '**/core/util/*',
+    ]
+
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/compile_library_classes_jar/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories.from(files([mainSrc]))
+    classDirectories.from(files([debugTree]))
+    executionData.from(
+        fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/connected/*coverage.ec"
+        ])
+    )
 }
-jacocoTestReport {
-    dependsOn test // tests are required to run before generating the report
+
+afterEvaluate {
+    tasks["testDebugUnitTest"].finalizedBy(jacocoTestReport)
 }
- */
+

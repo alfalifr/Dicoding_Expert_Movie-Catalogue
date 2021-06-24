@@ -2,6 +2,7 @@ plugins {
     id 'com.android.dynamic-feature'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'jacoco'
 }
 
 apply from: "../common_dependencies.gradle"
@@ -40,4 +41,41 @@ android {
 dependencies {
     implementation project(":app")
     implementation project(":core")
+}
+
+
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+    def fileFilter = [
+            '**/R.class',
+            '**/R.styleable',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            '**/data/models/*',
+            '**/di/*',
+            '**/core/util/*',
+    ]
+
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/app_classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories.from(files([mainSrc]))
+    classDirectories.from(files([debugTree]))
+    executionData.from(
+            fileTree(dir: "$buildDir", includes: [
+                    "jacoco/testDebugUnitTest.exec",
+                    "outputs/code-coverage/connected/*coverage.ec"
+            ])
+    )
+}
+
+afterEvaluate {
+    tasks["testDebugUnitTest"].finalizedBy(jacocoTestReport)
 }
