@@ -10,9 +10,11 @@ import org.junit.*
 import org.junit.Assert.assertEquals
 import org.junit.runners.MethodSorters
 import org.mockito.Mockito.*
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.test.UnitTestingUtil.waitForValue
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.FavDummyData
+import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.data.local.entity.ShowEntity
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.usecase.DeleteFavShowUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.usecase.InsertFavShowUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.usecase.IsShowFavUseCase
@@ -23,22 +25,33 @@ import sidev.lib.`val`.SuppressLiteral
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class ShowDetailFavViewModelTest {
     companion object {
-        private val isShowFavUseCase: IsShowFavUseCase by lazy { mock(IsShowFavUseCase::class.java) }
-        private val insertFavShowUseCase: InsertFavShowUseCase by lazy { mock(InsertFavShowUseCase::class.java) }
-        private val deleteFavShowUseCase: DeleteFavShowUseCase by lazy { mock(DeleteFavShowUseCase::class.java) }
+        private var mIsShowFavUseCase: IsShowFavUseCase? = mock(IsShowFavUseCase::class.java)
+        private var mInsertFavShowUseCase: InsertFavShowUseCase? = mock(InsertFavShowUseCase::class.java)
+        private var mDeleteFavShowUseCase: DeleteFavShowUseCase? = mock(DeleteFavShowUseCase::class.java)
 
-        private val vm: ShowDetailFavViewModel by lazy {
+        private val isShowFavUseCase: IsShowFavUseCase get() = mIsShowFavUseCase!!
+        private val insertFavShowUseCase: InsertFavShowUseCase get() = mInsertFavShowUseCase!!
+        private val deleteFavShowUseCase: DeleteFavShowUseCase get() = mDeleteFavShowUseCase!!
+
+        private val mVm: ShowDetailFavViewModel? by lazy {
             ShowDetailFavViewModel(null, isShowFavUseCase, insertFavShowUseCase, deleteFavShowUseCase)
         }
+        private val vm: ShowDetailFavViewModel get() = mVm!!
 
-        private val randomFavEntity = FavDummyData.favList.random()
-        private val randomFav = randomFavEntity.toModel()
-        private val randomShowType = Const.ShowType.values()[randomFavEntity.type]
+        private var mRandomFavEntity: ShowEntity? = FavDummyData.favList.random()
+        private var mRandomFav: Show? = mRandomFavEntity!!.toModel()
+        private var mRandomShowType: Const.ShowType? = Const.ShowType.values()[randomFavEntity!!.type]
+
+        private val randomFavEntity get() = mRandomFavEntity!!
+        private val randomFav get() = mRandomFav!!
+        private val randomShowType get() = mRandomShowType!!
 
         @Suppress(SuppressLiteral.UNCHECKED_CAST)
-        private val mockObserver: Observer<Boolean> = mock(Observer::class.java) as Observer<Boolean>
+        private var mMockObserver: Observer<Boolean>? = mock(Observer::class.java) as Observer<Boolean>
+        private val mockObserver get() = mMockObserver!!
 
-        private lateinit var liveData: LiveData<Boolean>
+        private var mLiveData: LiveData<Boolean>? = null
+        private val liveData get() = mLiveData!!
 
         @JvmStatic
         @BeforeClass
@@ -53,6 +66,15 @@ class ShowDetailFavViewModelTest {
                 flow { emit(true) }
             )
         }
+
+        @JvmStatic
+        @AfterClass
+        fun clear() {
+            mIsShowFavUseCase = null
+            mInsertFavShowUseCase = null
+            mDeleteFavShowUseCase = null
+            mMockObserver = null
+        }
     }
 
     @get:Rule
@@ -60,7 +82,7 @@ class ShowDetailFavViewModelTest {
 
     @Test
     fun _1_isFav() {
-        liveData = vm.isFav(randomShowType, randomFav)
+        mLiveData = vm.isFav(randomShowType, randomFav)
         liveData.observeForever(mockObserver)
 
         val data = liveData.waitForValue()
