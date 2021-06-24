@@ -7,7 +7,7 @@ import com.bumptech.glide.request.RequestOptions
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.getFormattedDate
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.imgUrl_300x450
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.imgUrl300x450
 import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.ItemMainListBinding
 
 class ShowViewHolder(
@@ -34,7 +34,7 @@ class ShowViewHolder(
         pb.max = 100
         pb.progress = data.rating.times(10).toInt()
         Glide.with(iv)
-            .load(data.imgUrl_300x450())
+            .load(data.imgUrl300x450())
             .apply(RequestOptions().apply {
                 error(R.drawable.ic_img_error)
             })

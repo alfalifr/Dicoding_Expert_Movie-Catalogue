@@ -1,7 +1,6 @@
 package sidev.app.course.dicoding.expert_moviecatalogue1.core.util
 
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.BuildConfig
-import sidev.lib.android.std.tool.util.`fun`.loge
 import java.io.Serializable
 
 
@@ -36,8 +35,8 @@ object Const {
     val API_KEY: String
         get()= BuildConfig.API_KEY
 
-    fun getImgUrl_300x450(fileName: String): String = "$ENDPOINT_IMG_300x450/$fileName"
-    fun getImgUrl_533x300(fileName: String): String = "$ENDPOINT_IMG_533x300/$fileName"
+    fun getImgUrl300x450(fileName: String): String = "$ENDPOINT_IMG_300x450/$fileName"
+    fun getImgUrl533x300(fileName: String): String = "$ENDPOINT_IMG_533x300/$fileName"
 
     fun getMovieDetailUrl(id: String, lang: String = "en-US"): String =
         "$ENDPOINT_MOVIE/$id?api_key=$API_KEY&language=$lang"

@@ -1,3 +1,5 @@
+@file:Suppress("TestFunctionName")
+
 package sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule

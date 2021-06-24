@@ -1,13 +1,17 @@
+@file:Suppress("TestFunctionName")
+
 package sidev.app.course.dicoding.expert_moviecatalogue1.search.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
-import org.junit.*
 import org.junit.Assert.assertEquals
+import org.junit.BeforeClass
+import org.junit.FixMethodOrder
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runners.MethodSorters
 import org.mockito.Mockito.*
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
@@ -27,7 +31,7 @@ class ShowSearchViewModelTest {
 
         private val randomShowList = DummyData.showDomains.randomSubList()
         private val randomShowType = Const.ShowType.values().random()
-        private val randomKeyword = "ay"
+        private const val randomKeyword = "ay"
 
         @Suppress(SuppressLiteral.UNCHECKED_CAST)
         private val mockObserver: Observer<List<Show>> = mock(Observer::class.java) as Observer<List<Show>>

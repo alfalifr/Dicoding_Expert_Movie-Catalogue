@@ -1,3 +1,5 @@
+@file:Suppress("unused", "unused", "unused", "unused")
+
 package sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.di
 
 import dagger.Binds

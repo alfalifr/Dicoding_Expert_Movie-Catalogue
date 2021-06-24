@@ -30,10 +30,6 @@ object UnitTestingUtil {
              * Called when the data is changed.
              * @param t  The new data
              */
-            /**
-             * Called when the data is changed.
-             * @param t  The new data
-             */
             override fun onChanged(t: T) {
                 data = t
                 removeObserver(this)
@@ -42,6 +38,7 @@ object UnitTestingUtil {
         }
         observeForever(observer)
 
+        @Suppress(SuppressLiteral.BLOCKING_METHOD_IN_NON_BLOCKING_CONTEXT)
         if(!lock.await(timeout, timeUnit)){
             throw TimeoutException("The value was never set.")
         }

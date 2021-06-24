@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MovieCatalogue - Expert</string>
     <string name="title_favorite">Favorite Movies</string>
+    <string name="title_search">Search Show</string>
 
     <string name="keyword_is_not_valid">Keyword is not valid</string>
     <string name="no_data">No Data</string>
@@ -11,7 +12,6 @@
     <string name="show_list">Show List</string>
     <string name="show_fav_list">Favourite Show List</string>
     <string name="show_detail">Show Detail</string>
-    <string name="toast_check_connection">Please check internet your connection</string>
     <string name="title">Title</string>
     <string name="release_date">Release Date</string>
     <string name="progress_template">100%</string>
@@ -36,5 +36,4 @@
     <string name="success_install_search">To search module</string>
     <string name="error_install_module">Error happened when installing dynamic feature module.\nPlease retry</string>
     <string name="success_install_module">To dynamic feature module</string>
-    <string name="title_search">Search Show</string>
 </resources>

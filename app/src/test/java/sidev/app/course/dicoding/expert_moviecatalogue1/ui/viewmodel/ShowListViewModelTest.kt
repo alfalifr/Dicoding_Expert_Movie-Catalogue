@@ -14,7 +14,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.test.DummyData
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.test.UnitTestingUtil.waitForValue
 import sidev.lib.`val`.SuppressLiteral
-import sidev.lib.console.prine
 
 class ShowListViewModelTest {
     companion object {

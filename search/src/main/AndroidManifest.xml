@@ -11,7 +11,7 @@
         </dist:delivery>
         <dist:fusing dist:include="true" />
     </dist:module>
-    <application>
+    <application android:allowBackup="false">
         <activity android:name=".ui.activity.SearchActivity"
             android:screenOrientation="portrait"/>
     </application>

@@ -8,9 +8,9 @@ import com.bumptech.glide.request.RequestOptions
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.backdropImgUrl_533x300
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.backdropImgUrl533x300
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.getFormattedDate
-import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.imgUrl_300x450
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Util.imgUrl300x450
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.AppUtil.getDurationString
 import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageShowDetailBinding
 import sidev.app.course.dicoding.expert_moviecatalogue1.di.DaggerLifecycleOwnerComponent
@@ -63,7 +63,7 @@ open class DetailActivity: AppCompatActivity() {
             pbRating.progress = show.rating.times(10).toInt()
             btnFav.visibility = View.GONE
             Glide.with(this@DetailActivity)
-                .load(show.imgUrl_300x450())
+                .load(show.imgUrl300x450())
                 .apply(RequestOptions().apply {
                     error(R.drawable.ic_img_error)
                 })
@@ -94,7 +94,7 @@ open class DetailActivity: AppCompatActivity() {
                             else getString(R.string.no_data)
 
                         Glide.with(this@DetailActivity)
-                            .load(it.backdropImgUrl_533x300())
+                            .load(it.backdropImgUrl533x300())
                             .into(ivBg)
                     }
                 }
