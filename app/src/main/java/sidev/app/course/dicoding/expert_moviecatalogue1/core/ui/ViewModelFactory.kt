@@ -8,7 +8,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.GetS
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.LifecycleOwnerScope
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowDetailViewModel
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowListViewModel
-import sidev.lib.`val`.SuppressLiteral
 import java.lang.IllegalStateException
 import javax.inject.Inject
 
@@ -18,7 +17,7 @@ class ViewModelFactory @Inject constructor(
     private val getPopularShowListUseCase: GetPopularShowListUseCase,
     private val getShowDetailUseCase: GetShowDetailUseCase,
 ): ViewModelProvider.Factory {
-    @Suppress(SuppressLiteral.UNCHECKED_CAST)
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T = when {
         modelClass.isAssignableFrom(ShowListViewModel::class.java) -> ShowListViewModel(app, getPopularShowListUseCase)
         modelClass.isAssignableFrom(ShowDetailViewModel::class.java) -> ShowDetailViewModel(app, getShowDetailUseCase)

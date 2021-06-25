@@ -3,10 +3,10 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.search.ui.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,7 +14,9 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.jetbrains.anko.startActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
+import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.AppUtil.themeColor
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.core.di.DaggerSearchCoreComponent
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.databinding.PageSearchBinding
@@ -22,8 +24,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.DetailActivi
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.adapter.ShowAdp
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.app.App
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.ui.viewmodel.ShowSearchViewModel
-import sidev.lib.android.std.tool.util.`fun`.loge
-import sidev.lib.android.std.tool.util.`fun`.startAct
 import javax.inject.Inject
 
 class SearchActivity: AppCompatActivity() {
@@ -46,10 +46,10 @@ class SearchActivity: AppCompatActivity() {
         setTitle(R.string.search_show)
 
         adp = ShowAdp().apply {
-            setOnItemClick { pos, data ->
+            setOnItemClick { _, data ->
                 val sm = SplitInstallManagerFactory.create(this@SearchActivity)
 
-                loge("SearchActivity sm.installedModules = ${sm.installedModules}")
+                Log.e("SearchActivity", "SearchActivity sm.installedModules = ${sm.installedModules}")
 
                 if(Const.MODULE_FAV in sm.installedModules) {
                     startActivity(
@@ -59,7 +59,7 @@ class SearchActivity: AppCompatActivity() {
                         }
                     )
                 } else {
-                    startAct<DetailActivity>(
+                    startActivity<DetailActivity>(
                         Const.KEY_SHOW to data,
                         Const.KEY_TYPE to showType,
                     )
@@ -88,9 +88,9 @@ class SearchActivity: AppCompatActivity() {
                     }
                 })
                 selectTab(getTabAt(vm.selectedTabPosition))
-                val selectedColor = ContextCompat.getColor(this@SearchActivity, R.color.colorPrimary)
+                val selectedColor = themeColor(R.attr.colorPrimary)
                 setSelectedTabIndicatorColor(selectedColor)
-                val normalTxtColor = ContextCompat.getColor(this@SearchActivity, R.color.colorText)
+                val normalTxtColor = themeColor(android.R.attr.textColor)
                 setTabTextColors(normalTxtColor, selectedColor)
             }
         }
@@ -100,7 +100,7 @@ class SearchActivity: AppCompatActivity() {
                 showNoData(false)
                 showLoading()
             }
-            onCallNotSuccess { process, code, e ->
+            onCallNotSuccess { process, _, e ->
                 showLoading(false)
                 showNoData(
                     textResId = R.string.error_data,

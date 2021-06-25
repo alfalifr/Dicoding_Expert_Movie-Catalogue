@@ -2,13 +2,13 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.fragment
 
 import android.os.Bundle
 import android.view.View
+import org.jetbrains.anko.support.v4.startActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.di.DaggerFavCoreComponent
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.activity.DetailFavActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.fragment.ShowListAbsFragment
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.viewmodel.ShowFavListViewModel
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.app.App
-import sidev.lib.android.std.tool.util.`fun`.startAct
 import javax.inject.Inject
 
 class ShowFavListFragment: ShowListAbsFragment() {
@@ -27,8 +27,8 @@ class ShowFavListFragment: ShowListAbsFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adp.setOnItemClick { pos, data ->
-            startAct<DetailFavActivity>(
+        adp.setOnItemClick { _, data ->
+            startActivity<DetailFavActivity>(
                 Const.KEY_SHOW to data,
                 Const.KEY_TYPE to type,
             )

@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.di.ModuleScope
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.core.domain.usecase.SearchShowUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.ui.viewmodel.ShowSearchViewModel
-import sidev.lib.`val`.SuppressLiteral
 import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
@@ -15,7 +14,7 @@ class SearchViewModelFactory @Inject constructor(
     private val app: Application?,
     private val useCase: SearchShowUseCase,
 ): ViewModelProvider.Factory {
-    @Suppress(SuppressLiteral.UNCHECKED_CAST)
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T = when{
         modelClass.isAssignableFrom(ShowSearchViewModel::class.java) -> ShowSearchViewModel(app, useCase)
         else -> throw IllegalArgumentException("No such ViewModel class ($modelClass) for SearchViewModelFactory")

@@ -3,8 +3,7 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.core.util.test
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import kotlinx.coroutines.delay
-import sidev.lib.`val`.SuppressLiteral
-import sidev.lib.async.runBlocking
+import kotlinx.coroutines.runBlocking
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
@@ -38,12 +37,12 @@ object UnitTestingUtil {
         }
         observeForever(observer)
 
-        @Suppress(SuppressLiteral.BLOCKING_METHOD_IN_NON_BLOCKING_CONTEXT)
+        @Suppress("BLOCKING_METHOD_IN_NON_BLOCKING_CONTEXT")
         if(!lock.await(timeout, timeUnit)){
             throw TimeoutException("The value was never set.")
         }
 
-        @Suppress(SuppressLiteral.UNCHECKED_CAST)
+        @Suppress("UNCHECKED_CAST")
         return@runBlocking data as T
     }
 

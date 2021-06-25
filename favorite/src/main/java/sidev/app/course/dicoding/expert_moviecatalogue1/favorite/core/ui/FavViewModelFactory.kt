@@ -12,7 +12,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.use
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.viewmodel.ShowDetailFavViewModel
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.viewmodel.ShowFavListViewModel
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.viewmodel.ShowDetailViewModel
-import sidev.lib.`val`.SuppressLiteral
 import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
@@ -25,7 +24,7 @@ class FavViewModelFactory @Inject constructor(
     private val getFavShowListUseCase: GetFavShowListUseCase,
     private val getShowDetailUseCase: GetShowDetailUseCase,
 ): ViewModelProvider.Factory {
-    @Suppress(SuppressLiteral.UNCHECKED_CAST)
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T = when {
         modelClass.isAssignableFrom(ShowDetailViewModel::class.java) -> ShowDetailViewModel(
             app, getShowDetailUseCase

@@ -1,6 +1,7 @@
 package sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import org.jetbrains.anko.imageResource
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
@@ -8,7 +9,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.di.DaggerF
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.viewmodel.ShowDetailFavViewModel
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.DetailActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.app.App
-import sidev.lib.android.std.tool.util.`fun`.loge
 import javax.inject.Inject
 
 class DetailFavActivity: DetailActivity() {
@@ -29,7 +29,7 @@ class DetailFavActivity: DetailActivity() {
         binding.btnFav.apply {
             visibility = View.VISIBLE
             setOnClickListener {
-                loge("isFav btn click = $isFav")
+                Log.e("DetailFavAct", "isFav btn click = $isFav")
                 if(isFav) {
                     favVm.deleteFav(showType, show)
                 } else {
@@ -41,10 +41,10 @@ class DetailFavActivity: DetailActivity() {
         favVm.apply {
             onCallNotSuccess { process, code, e ->
                 isError = true
-                loge("DetailFav error proccess= $process code= $code e= $e", e)
+                Log.e("DetailFavAct", "DetailFav error proccess= $process code= $code e= $e", e)
             }
             isFav(showType, show).observe(this@DetailFavActivity) {
-                loge("DetailFav isFav observe() it= $it")
+                Log.e("DetailFavAct", "DetailFav isFav observe() it= $it")
                 if(it != null){
                     this@DetailFavActivity.isFav = it
                     binding.btnFav.imageResource = if(it) R.drawable.ic_heart_full else R.drawable.ic_heart

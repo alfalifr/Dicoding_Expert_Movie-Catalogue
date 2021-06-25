@@ -22,7 +22,7 @@ Catatan Lain:
     pada modul :core, :favorite, dan :search
 
   - Pada Inspect Code mungkin muncul kategori "Properties files" dengan peringatan unused.
-    Namun, nilai di dalamnya digunakan pada build.gradle project dan modul :core.
+    Namun, nilai di dalamnya digunakan pada modul :core.
 
   - Beberapa resource mungkin muncul sebagai "unused" pada Inspect Code.
     Namun resource tersebut digunakan pada modul lain. Seperti misalnya R.string.title_favorite

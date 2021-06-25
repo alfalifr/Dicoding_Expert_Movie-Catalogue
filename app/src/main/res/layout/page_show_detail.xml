@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:minHeight="220dp"
-        android:src="@color/colorPrimary"
+        android:src="?colorPrimary"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@id/tv_tagline"
         app:layout_constraintEnd_toEndOf="parent"

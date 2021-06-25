@@ -2,20 +2,20 @@ package sidev.app.course.dicoding.expert_moviecatalogue1.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import org.jetbrains.anko.support.v4.startActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.R
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.databinding.PageShowListBinding
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.activity.DetailActivity
 import sidev.app.course.dicoding.expert_moviecatalogue1.ui.adapter.ShowAdp
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.ui.AsyncVm
-import sidev.lib.android.std.tool.util.`fun`.loge
-import sidev.lib.android.std.tool.util.`fun`.startAct
 
 abstract class ShowListAbsFragment: Fragment() {
     private lateinit var binding: PageShowListBinding
@@ -46,10 +46,10 @@ abstract class ShowListAbsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adp = ShowAdp().apply {
-            setOnItemClick { pos, data ->
+            setOnItemClick { _, data ->
                 val sm = SplitInstallManagerFactory.create(requireContext())
 
-                loge("FavList sm.installedModules = ${sm.installedModules}")
+                Log.e("ShowListAbsFragment","FavList sm.installedModules = ${sm.installedModules}")
 
                 //Check whether favorite module is installed
                 if(Const.MODULE_FAV in sm.installedModules) {
@@ -60,7 +60,7 @@ abstract class ShowListAbsFragment: Fragment() {
                         }
                     )
                 } else {
-                    startAct<DetailActivity>(
+                    startActivity<DetailActivity>(
                         Const.KEY_SHOW to data,
                         Const.KEY_TYPE to type,
                     )
@@ -76,11 +76,11 @@ abstract class ShowListAbsFragment: Fragment() {
 
         vm.apply {
             onPreAsyncTask {
-                loge("onPreAsyncTask() AppConfig.incUiAsync()")
+                Log.e("ShowListAbsFragment", "onPreAsyncTask() AppConfig.incUiAsync()")
                 showNoData(false)
                 showLoading()
             }
-            onCallNotSuccess { process, code, e ->
+            onCallNotSuccess { _, code, e ->
                 showLoading(false)
                 showDataError(true, code, e)
             }
