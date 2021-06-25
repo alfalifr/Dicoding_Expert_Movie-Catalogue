@@ -13,7 +13,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.usecase.GetP
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.Const
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.test.DummyData
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.test.UnitTestingUtil.waitForValue
-import sidev.lib.`val`.SuppressLiteral
 
 class ShowListViewModelTest {
     companion object {
@@ -41,7 +40,7 @@ class ShowListViewModelTest {
 
     @Before
     fun beforeEach() {
-        @Suppress(SuppressLiteral.UNCHECKED_CAST)
+        @Suppress("UNCHECKED_CAST")
         mockObserver = mock(Observer::class.java) as Observer<List<Show>>
         vm = ShowListViewModel(null, useCase) //So the value of the LiveData is reset on each test case.
     }

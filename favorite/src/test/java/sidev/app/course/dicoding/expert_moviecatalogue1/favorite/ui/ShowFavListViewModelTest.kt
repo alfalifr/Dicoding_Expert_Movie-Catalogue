@@ -17,7 +17,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.FavDummyData
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.usecase.GetFavShowListUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.util.DataMapper.toModel
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.viewmodel.ShowFavListViewModel
-import sidev.lib.`val`.SuppressLiteral
 
 class ShowFavListViewModelTest {
     companion object {
@@ -43,7 +42,7 @@ class ShowFavListViewModelTest {
 
     @Before
     fun before() {
-        @Suppress(SuppressLiteral.UNCHECKED_CAST)
+        @Suppress("UNCHECKED_CAST")
         mockObserver = mock(Observer::class.java) as Observer<List<Show>>
     }
 

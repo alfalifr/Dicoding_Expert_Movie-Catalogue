@@ -17,7 +17,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.use
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.domain.usecase.IsShowFavUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.core.util.DataMapper.toModel
 import sidev.app.course.dicoding.expert_moviecatalogue1.favorite.ui.viewmodel.ShowDetailFavViewModel
-import sidev.lib.`val`.SuppressLiteral
 
 class ShowDetailFavViewModelTest {
     companion object {
@@ -58,7 +57,7 @@ class ShowDetailFavViewModelTest {
 
     @Before
     fun beforeEach() {
-        @Suppress(SuppressLiteral.UNCHECKED_CAST)
+        @Suppress("UNCHECKED_CAST")
         mockObserver = mock(androidx.lifecycle.Observer::class.java) as Observer<Boolean>
         liveData.observeForever(mockObserver)
     }

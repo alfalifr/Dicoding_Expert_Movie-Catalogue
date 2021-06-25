@@ -17,7 +17,6 @@ import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.test.UnitTesti
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.util.test.UnitTestingUtil.waitForValue
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.core.domain.usecase.SearchShowUseCase
 import sidev.app.course.dicoding.expert_moviecatalogue1.search.ui.viewmodel.ShowSearchViewModel
-import sidev.lib.`val`.SuppressLiteral
 
 class ShowSearchViewModelTest {
     companion object {
@@ -46,7 +45,7 @@ class ShowSearchViewModelTest {
     @Before
     fun beforeEach() {
         vm = ShowSearchViewModel(null, useCase)
-        @Suppress(SuppressLiteral.UNCHECKED_CAST)
+        @Suppress("UNCHECKED_CAST")
         mockObserver = mock(Observer::class.java) as Observer<List<Show>>
         vm.searchList.observeForever(mockObserver)
     }

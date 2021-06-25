@@ -17,7 +17,7 @@
         android:layout_alignParentBottom="true"
         android:background="?colorPrimary"
         app:labelVisibilityMode="labeled"
-        app:itemIconTint="?colorAccent"
+        app:itemIconTint="@drawable/selector_bnv_item_text_color"
         app:itemTextColor="@drawable/selector_bnv_item_text_color"
         app:menu="@menu/main_bnv"/>
 

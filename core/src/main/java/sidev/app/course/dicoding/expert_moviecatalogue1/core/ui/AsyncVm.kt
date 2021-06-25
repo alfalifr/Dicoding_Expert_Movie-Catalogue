@@ -24,7 +24,7 @@ open class AsyncVm(app: Application?): ViewModel() {
     /**
      * Executed before any async task in `this` runs.
      */
-    protected var onPreAsyncTask: ((process: String) -> Unit)?= null
+    private var onPreAsyncTask: ((process: String) -> Unit)?= null
     private var onCallNotSuccess: ((process: String, code: Int, e: Throwable?) -> Unit)?= null
 
     /**

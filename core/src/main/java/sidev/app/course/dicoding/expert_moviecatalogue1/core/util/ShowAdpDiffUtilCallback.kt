@@ -1,5 +1,6 @@
 package sidev.app.course.dicoding.expert_moviecatalogue1.core.util
 
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.DiffUtil
 import sidev.app.course.dicoding.expert_moviecatalogue1.core.domain.model.Show
 
